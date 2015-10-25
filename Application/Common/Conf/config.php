@@ -3,7 +3,7 @@ return array(
 	// 路由
 	'URL_ROUTER_ON'   => true,
 	'URL_ROUTE_RULES'=>array(
-	    '/^[A-Za-z0-9]{6}$/' => 'Url/Index/index',
+	    '/^[A-Za-z0-9]{6}$/' => 'Tools/DWZ/url',
 	    ''                   => 'Home/Index/index'
 	),
 
@@ -12,7 +12,7 @@ return array(
     'DB_HOST'               =>  'localhost', // 服务器地址
     'DB_NAME'               =>  'tokenteam',          // 数据库名
     'DB_USER'               =>  'root',      // 用户名
-    'DB_PWD'                =>  'root',          // 密码
+    'DB_PWD'                =>  '',          // 密码
     'DB_PORT'               =>  '3306',        // 端口
     'DB_PREFIX'             =>  '',    // 数据库表前缀
 );
