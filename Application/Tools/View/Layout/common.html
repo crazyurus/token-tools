@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Token团队工具包</title>
+    <link rel="shortcut icon" href="__IMAGE__/favicon.ico" type="image/x-icon">
+    <link href="__BOOTSTRAP__/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__COMMON__/css/common.css" rel="stylesheet">
+    <block name="style"></block>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-header">
+            <a class="navbar-brand" title="Token团队工具包"><img src="__IMAGE__/logo.jpg" /><b>Token Tools</b></a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{:U('Tools/DWZ/index')}">短网址</a></li>
+                    <li><a href="{:U('Tools/QRCode/index')}">二维码</a></li>
+                    <li><a href="{:U('Tools/Talk/index')}">说说统计</a></li>
+                    <li><a href="{:U('Tools/Detect/index')}">浏览器检测</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <block name="body"></block>
+        <hr>
+        <footer>
+            <p>Feedback:&nbsp;<a href="mailto:xing.liao@wutnews.net">@廖星</a></p>
+            <p>Powered By Token Team</p>
+        </footer>
+    </div>
+    <script type="text/javascript" src="__COMMON__/js/jquery.min.js"></script>
+    <script type="text/javascript" src="__BOOTSTRAP__/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__COMMON__/js/bootbox.min.js"></script>
+    <script type="text/javascript" src="__COMMON__/js/core.js"></script>
+    <script type="text/javascript">
+        Token.variable = {
+            url: "__URL__",
+            app: "__APP__"
+        };
+    </script>
+    <block name="script"></block>
+</body>
+
+</html>

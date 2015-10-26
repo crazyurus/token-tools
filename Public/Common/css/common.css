@@ -1,0 +1,50 @@
+body {
+    padding-top: 50px;   
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 30px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 20px;
+}
+
+.navbar-brand {
+    padding: 10px 15px;
+}
+
+.navbar-nav > li {
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+.navbar-nav > li > a:hover {
+	color: #009a61 !important;
+}
+
+.navbar-nav > .active > a {
+	background-color: transparent !important;
+    border-bottom: 4px solid #009a61;
+}
+
+form > button {
+    margin-right: 20px;
+}
+
+.form-control:focus {
+    border-color: #00995f;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(0,153,95,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(0,153,95,.6);
+}
+
+.input-group {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+button > span.glyphicon {
+    margin-right: 6px;
+    height: 16px;
+    width: 16px;
+}

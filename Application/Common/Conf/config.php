@@ -16,6 +16,15 @@ return array(
     'DB_PORT'               =>  '3306',        // 端口
     'DB_PREFIX'             =>  '',    // 数据库表前缀
 
+    // 模板参数
+    'TMPL_PARSE_STRING' => array(
+        '__BOOTSTRAP__' =>  __ROOT__.'/Public/Bootstrap',
+        '__IMAGE__' => __ROOT__.'/Public/Common/image',
+        '__COMMON__' => __ROOT__.'/Public/Common',
+        '__DWZ__' => __ROOT__.'/Public/Tools/DWZ',
+    ),
+
     // 其它
     'URL_CASE_INSENSITIVE' => true,
+    'URL_MODEL'             =>  2,
 );

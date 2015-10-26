@@ -1,0 +1,39 @@
+<extend name="Layout/common" />
+<block name="body">
+    <h3>短网址</h3>
+    <div class="alert alert-success" role="alert" id="result" hidden></div>
+    <div class="well">
+        <form class="form-encode" onsubmit="return false;">
+            <div class="form-group">
+			    <div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">网址</span>
+					<input type="text" class="form-control" id="txt_url" placeholder="http://token.team/" required>
+				</div>
+                <div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">标题</span>
+					<input type="text" class="form-control" id="txt_title">
+				</div>
+            </div>
+            <button type="submit" class="btn btn-success" id="btn_encode"><span class="glyphicon glyphicon-open" aria-hidden="true"></span>生成</button>
+            <button type="reset" class="btn btn-danger" id="btn_decode"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>清除</button>
+        </form>
+    </div> 
+</block>
+<block name="script">
+    <script type="text/javascript">
+    $(document).ready(function() {
+    	$("form").submit(function() {
+    		var url = $("#txt_url").val();
+    		var title = $("#txt_title").val();
+    		if(/^[a-zA-z]+:\/\/[^\s]*$/.test(url)) {
+    			Token.ajax("{:U('Tools/DWZ/add')}", { url: url, title: title }, function(data) {
+    				$("#result").show().html("<span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;短网址生成成功！链接为：<a href=\"http://token.team/" + data + "\" target=\"_blank\">token.team/" + data +"</a>")
+    			});
+    		} else {
+    			Token.alert("Url的格式不正确！");
+    		}
+    	});
+    });
+
+    </script>
+</block>
