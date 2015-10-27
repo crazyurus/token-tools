@@ -32,7 +32,7 @@ class DWZController extends CommonController {
 			}
 			$this->ajaxSuccess($short_url);
 		}
-		else $this->ajaxError('无效的网址，请检查Url格式');
+		else $this->ajaxError('Url的格式不正确，请检查是否含有http协议部分。');
 	}
 
     public function url() {

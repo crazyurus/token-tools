@@ -1,7 +1,7 @@
 ﻿<extend name="Layout/common" />
 <block name="body">
     <h3>说说统计</h3>
-        <p>总共有 <span id="total_num"></span> 条说说，第 <span id="page"></span> 页</p>
+    <p><abbr title="2577438164">WUT经纬网</abbr>（<code>2577438164</code>），总共有 <code id="total_num">NaN</code> 条说说，这是第 <code id="page">NaN</code> 页</p>
         <table class="table table-striped table-hover table-responsive">
             <thead class="breadcrumb text-center">
                 <tr>
@@ -29,6 +29,14 @@
         var start_pos = (page - 1) * per_page;
         var qq = "2577438164";
 
+        // 配置Ajax
+        $.ajaxSetup({
+            error: function(x,e){
+                Token.alert("连接QQ空间服务器失败，请稍后再试！");
+                return false;
+            }
+        });
+
         // 获取说说数据
         $.getJSON("http://m.qzone.com/list?format=jsonp&list_type=shuoshuo&action=0&res_attach=att%3D" + start_pos + "&res_uin=" + qq + "&count=" + per_page + "&sid=Ab657PodbD4ZooRGW-S_6MNm&jsoncallback=?");
 
@@ -37,7 +45,7 @@
             // 判断是否获取成功
             if(typeof(result) == "undefined") {
                 Token.alert("获取说说失败，请检查网络！");
-                return;
+                return false;
             }
             // 计算总的说说数
             total_num = start_pos + 20 + result.data.remain_count;

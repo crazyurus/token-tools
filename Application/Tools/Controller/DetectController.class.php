@@ -13,6 +13,10 @@ class DetectController extends CommonController {
 		$this->display();
 	}
 
+	public function info() {
+		phpinfo();
+	}
+
 	private function mysql_version() {
         $version = M()->query('SELECT version() AS ver');
         return $version[0]['ver'];

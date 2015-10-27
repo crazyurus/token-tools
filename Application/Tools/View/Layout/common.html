@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>Token团队工具包</title>
+    <title>Token Tools</title>
     <link rel="shortcut icon" href="__IMAGE__/favicon.ico" type="image/x-icon">
     <link href="__BOOTSTRAP__/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__COMMON__/nprogress/nprogress.min.css" rel="stylesheet">
     <link href="__COMMON__/css/common.css" rel="stylesheet">
     <block name="style"></block>
 </head>
@@ -30,6 +31,7 @@
                     <li <?php check_active('DWZ'); ?>><a href="{:U('Tools/DWZ/index')}">短网址</a></li>
                     <li <?php check_active('QRCode'); ?>><a href="{:U('Tools/QRCode/index')}">二维码</a></li>
                     <li <?php check_active('Encode'); ?>><a href="{:U('Tools/Encode/index')}">编解码</a></li>
+                    <li <?php check_active('RegEx'); ?>><a href="{:U('Tools/RegEx/index')}">正则表达式</a></li>
                     <li <?php check_active('MarkDown'); ?>><a href="{:U('Tools/MarkDown/index')}">MarkDown</a></li>
                     <li <?php check_active('Talk'); ?>><a href="{:U('Tools/Talk/index')}">说说统计</a></li>
                     <li <?php check_active('Detect'); ?>><a href="{:U('Tools/Detect/index')}">浏览器检测</a></li>
@@ -45,13 +47,15 @@
         <block name="body"></block>
         <hr>
         <footer>
+            <p class="pull-right"><a id="go_top" href="javascript:void(0)">回到顶部</a></p>
             <p>Feedback:&nbsp;<a href="mailto:xing.liao@wutnews.net">@廖星</a></p>
             <p>Powered By Token Team</p>
         </footer>
     </div>
     <script type="text/javascript" src="__COMMON__/js/jquery.min.js"></script>
     <script type="text/javascript" src="__BOOTSTRAP__/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="__COMMON__/js/bootbox.min.js"></script>
+    <script type="text/javascript" src="__COMMON__/bootbox/bootbox.min.js"></script>
+    <script type="text/javascript" src="__COMMON__/nprogress/nprogress.min.js"></script>
     <script type="text/javascript" src="__COMMON__/js/core.js"></script>
     <script type="text/javascript">
         Token.variable = {

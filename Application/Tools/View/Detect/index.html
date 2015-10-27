@@ -10,4 +10,15 @@
     <code>{$server}</code>
     <h3>User Agent</h3>
     <code>{$user_agent}</code>
+    <h3>PHP Info</h3>
+    <iframe src="{:U('Tools/Detect/info')}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" id="phpinfo"></iframe>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(window.parent.document).find("#phpinfo").load(function() {
+                $(this).height($(document).height() + 30);
+            });
+        });
+    </script>
 </block>

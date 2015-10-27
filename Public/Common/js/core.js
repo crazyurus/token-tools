@@ -14,3 +14,25 @@ var Token = {
 	},
 	variable: ""
 };
+
+// 返回顶部
+$("#go_top").click(function() {
+	$("body,html").animate({ scrollTop: 0}, 500);
+});
+
+// 设置进度条
+$(document).ready(function() { 
+	NProgress.start();
+});
+
+$(window).load(function() {  
+	NProgress.done();
+}); 
+
+$(document).ajaxSend(function() {
+	NProgress.start();
+});
+
+$(document).ajaxComplete(function() {
+	NProgress.done();
+});

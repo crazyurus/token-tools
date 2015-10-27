@@ -15,8 +15,8 @@ h3 {
 }
 
 .navbar-nav > li {
-	margin-left: 8px;
-	margin-right: 8px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .navbar-nav > li > a:hover {
@@ -28,7 +28,7 @@ h3 {
     border-bottom: 4px solid #009a61;
 }
 
-form > button {
+form > button:first-child, p > button:first-child {
     margin-right: 20px;
 }
 
@@ -100,4 +100,14 @@ textarea {
 
 .margin-top-80 {
     margin-top: 80px;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-color: #009a61;
+    color: #fff
+}
+
+.dropdown-scroll {
+    height: 300px;
+    overflow-y: auto;
 }
