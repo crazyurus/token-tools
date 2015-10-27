@@ -1,0 +1,77 @@
+<extend name="Layout/common" />
+<block name="body">
+    <h3>二维码</h3>
+    <div class="row">
+        <div class="col-md-9">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#url" aria-controls="url" role="tab" data-toggle="tab">网址</a></li>
+                <li role="presentation"><a href="#qq" aria-controls="qq" role="tab" data-toggle="tab">QQ</a></li>
+                <li role="presentation"><a href="#qun" aria-controls="qun" role="tab" data-toggle="tab">QQ群</a></li>
+                <li role="presentation"><a href="#weibo" aria-controls="weibo" role="tab" data-toggle="tab">微博</a></li>
+                <li role="presentation"><a href="#wechat" aria-controls="wechat" role="tab" data-toggle="tab">微信</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="url">
+                    <form action="">
+                        <div class="form-group">
+                            <input type="hidden" name="type" value="scheme" />
+                            <input type="url" class="form-control" name="url" placeholder="tbmovie://taobao.com/home" value="" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>&nbsp;&nbsp;生成</button>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane<?php if($type=='alipay') echo ' active';?>" id="alipay">
+                    <form action="">
+                        <div class="form-group">
+                            <input type="hidden" name="type" value="alipay" />
+                            <input type="url" class="form-control" name="url" placeholder="http://h5.m.taobao.com/app/movie/pages/redeem/home.html" value="" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>&nbsp;&nbsp;生成</button>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tbmovie">
+                    <form action="">
+                        <div class="form-group">
+                            <input type="hidden" name="type" value="tbmovie" />
+                            <input type="url" class="form-control" name="url" placeholder="http://h5.m.taobao.com/app/movie/pages/redeem/home.html" value="" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>&nbsp;&nbsp;生成</button>
+                    </form>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <?php if(!empty($path)) { ?>
+            <div class="alert alert-warning" role="alert">
+                <p id="target_url">生成的URL：
+                    <?=$path?>
+                </p>
+                <p><a href="<?=$path?>" target="_blank">点击此处打开链接</a></p>
+            </div>
+            <?php } ?>
+        </div>
+        <div class="col-md-3">
+            <a class="thumbnail" id="qrcode_self"></a>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+    $(document).ready(function() {
+    	// 编码
+        $('#btn_encode').click(function() {
+            var oriStr = $('#txt_url').val().trim();
+            if (oriStr.match(/^\w+%3A%2F%2F/)) return;
+            $('#txt_url').val(encodeURIComponent(oriStr));
+        });
+
+
+        // 解码
+        $('#btn_decode').click(function() {
+            var oriStr = $('#txt_url').val().trim();
+            if (oriStr.match(/^\w+:\/\//)) return;
+            $('#txt_url').val(decodeURIComponent(oriStr));
+        });
+    });
+
+    </script>
+</block>

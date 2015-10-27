@@ -1,0 +1,86 @@
+﻿<extend name="Layout/common" />
+<block name="body">
+    <h3>说说统计</h3>
+        <p>总共有 <span id="total_num"></span> 条说说，第 <span id="page"></span> 页</p>
+        <table class="table table-striped table-hover table-responsive">
+            <thead class="breadcrumb text-center">
+                <tr>
+                    <th>编号</th>
+                    <th>说说内容</th>
+                    <th>发表时间</th>
+                    <th>链接</th>
+                    <th>访问量</th>
+                    <th>点赞数</th>
+                    <th>转发</th>
+                    <th>评论</th>
+                    <th>图片</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <ul class="pagination"></ul>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        var total_num = 0;
+        var per_page = 20;
+        var query = window.location.search.split("=");
+        var page = query.length == 1 ? 1 : query[1];
+        var start_pos = (page - 1) * per_page;
+        var qq = "2577438164";
+
+        // 获取说说数据
+        $.getJSON("http://m.qzone.com/list?format=jsonp&list_type=shuoshuo&action=0&res_attach=att%3D" + start_pos + "&res_uin=" + qq + "&count=" + per_page + "&sid=Ab657PodbD4ZooRGW-S_6MNm&jsoncallback=?");
+
+
+        function _Callback(result) {
+            // 判断是否获取成功
+            if(typeof(result) == "undefined") {
+                Token.alert("获取说说失败，请检查网络！");
+                return;
+            }
+            // 计算总的说说数
+            total_num = start_pos + 20 + result.data.remain_count;
+            $("#total_num").text(total_num);
+            $("#page").text(page);
+
+            // 设置分页按钮
+            var page_num = Math.ceil(total_num / per_page);
+            var pagination_content = $(".pagination");
+            for (var i = 1; i <= page_num; ++i) {
+                var active_str = "";
+                if (page == i) active_str = " class=\"active\"";
+                pagination_content.append("<li" + active_str + "><a href=\"?page=" + i + "\">" + i + "</a></li>");
+            }
+
+            // 获取说说
+            var table_content = $("tbody");
+            $.each(result.data.vFeeds, function (i, item) {
+                table_content.append("<tr><td>" + (start_pos + i + 1) + "</td><td>" + getSubstr(item.summary) + "</td><td>" + getTime(item.comm.time) + "</td><td>" + getHref(item.comm.curlikekey) + "</td><td>0</td><td>" + getNum(item.like) + "</td><td>0</td><td>" + getNum(item.comment) + "</td><td>"+getPic(item.pic)+"</td></tr>");
+            });
+        }
+
+        function getHref(url) {
+            return "<a href=\"" + url + "\" target=\"_blank\">点击查看说说</a>";
+        }
+
+        function getSubstr(obj) {
+            if (obj == undefined) return "";
+            return obj.summary.substr(0, 30);
+        }
+
+        function getTime(timestamp) {
+            return new Date(parseInt(timestamp) * 1000).toLocaleString();
+        }
+
+        function getNum(obj) {
+            if (obj == undefined) return 0;
+            else return obj.num;
+        }
+
+        function getPic(obj) {
+            if (obj == undefined) return "无";
+            else return "有";
+        }
+    </script>
+</block>

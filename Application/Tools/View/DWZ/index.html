@@ -1,9 +1,12 @@
 <extend name="Layout/common" />
 <block name="body">
     <h3>短网址</h3>
-    <div class="alert alert-success" role="alert" id="result" hidden></div>
+    <div class="alert alert-success alert-dismissible" role="alert" id="result" hidden>
+        <button type="button" class="close" data-dismiss="alert" aria-label="关闭"><span aria-hidden="true">&times;</span></button>
+        <span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;短网址生成成功！链接为：<span class="link"></span>
+    </div>
     <div class="well">
-        <form class="form-encode" onsubmit="return false;">
+        <form onsubmit="return false;">
             <div class="form-group">
 			    <div class="input-group">
 					<span class="input-group-addon" id="basic-addon1">网址</span>
@@ -14,8 +17,7 @@
 					<input type="text" class="form-control" id="txt_title">
 				</div>
             </div>
-            <button type="submit" class="btn btn-success" id="btn_encode"><span class="glyphicon glyphicon-open" aria-hidden="true"></span>生成</button>
-            <button type="reset" class="btn btn-danger" id="btn_decode"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>清除</button>
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-open" aria-hidden="true"></span>生成</button>
         </form>
     </div> 
 </block>
@@ -27,7 +29,7 @@
     		var title = $("#txt_title").val();
     		if(/^[a-zA-z]+:\/\/[^\s]*$/.test(url)) {
     			Token.ajax("{:U('Tools/DWZ/add')}", { url: url, title: title }, function(data) {
-    				$("#result").show().html("<span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;短网址生成成功！链接为：<a href=\"http://token.team/" + data + "\" target=\"_blank\">token.team/" + data +"</a>")
+    				$("#result").show().find("span.link").html("<a href=\"http://token.team/" + data + "\" target=\"_blank\">token.team/" + data +"</a>");
     			});
     		} else {
     			Token.alert("Url的格式不正确！");

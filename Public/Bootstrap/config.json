@@ -6,7 +6,7 @@
     "@gray": "lighten(@gray-base, 33.5%)",
     "@gray-light": "lighten(@gray-base, 46.7%)",
     "@gray-lighter": "lighten(@gray-base, 93.5%)",
-    "@brand-primary": "darken(#00905f, 6.5%)",
+    "@brand-primary": "darken(#009a61, 6.5%)",
     "@brand-success": "#5cb85c",
     "@brand-info": "#5bc0de",
     "@brand-warning": "#f0ad4e",
@@ -430,5 +430,5 @@
     "scrollspy.js",
     "transition.js"
   ],
-  "customizerUrl": "http://v3.bootcss.com/customize/?id=e08f9f02d1b2e42a1fd8"
+  "customizerUrl": "http://v3.bootcss.com/customize/?id=bc6a1c7ab9dd42c5e7e9"
 }

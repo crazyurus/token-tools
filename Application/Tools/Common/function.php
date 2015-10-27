@@ -17,3 +17,7 @@ function short_url($url) {
     }
     return $short_url_list[0];
 }
+
+function check_active($tool) {
+    if($tool == I('path.0')) echo 'class="active"';
+}
