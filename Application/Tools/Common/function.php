@@ -19,5 +19,5 @@ function short_url($url) {
 }
 
 function check_active($tool) {
-    if($tool == I('path.0')) echo 'class="active"';
+    if(strtolower($tool) == I('path.0')) echo 'class="active"';
 }
