@@ -28,7 +28,7 @@ h3 {
     border-bottom: 4px solid #009a61;
 }
 
-form > button:first-child, p > button:first-child {
+button.push-20 {
     margin-right: 20px;
 }
 

@@ -10,7 +10,7 @@
             <div class="form-group">
 			    <div class="input-group">
 					<span class="input-group-addon" id="basic-addon1">网址</span>
-					<input type="text" class="form-control" id="txt_url" placeholder="http://token.team/" required>
+					<input type="url" class="form-control" id="txt_url" placeholder="http://token.team/" required>
 				</div>
                 <div class="input-group">
 					<span class="input-group-addon" id="basic-addon1">标题</span>
@@ -27,7 +27,7 @@
     	$("form").submit(function() {
     		var url = $("#txt_url").val();
     		var title = $("#txt_title").val();
-    		if(/^[a-zA-z]+:\/\/[^\s]*$/.test(url)) {
+    		if(Token.check.url(url)) {
     			Token.ajax("{:U('Tools/DWZ/add')}", { url: url, title: title }, function(data) {
     				$("#result").show().find("span.link").html("<a href=\"http://token.team/" + data + "\" target=\"_blank\">token.team/" + data +"</a>");
     			});

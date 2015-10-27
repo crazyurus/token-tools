@@ -12,6 +12,17 @@ var Token = {
 			else bootbox.alert(result.data);
 		});
 	},
+	check: {
+		url: function(url) {
+			return /^[a-zA-z]+:\/\/[^\s]*$/.test(url);
+		},
+		qq: function(qq) {
+			return /^[1-9][0-9]{4,10}$/.test(qq);
+		},
+		weibo: function(weibo) {
+			return /^[0-9]{8,12}$/.test(weibo);
+		}
+	},
 	variable: ""
 };
 
