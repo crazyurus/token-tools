@@ -268,17 +268,34 @@
             render_method = $(this).text().trim().toLowerCase();
         });
 
+        // 折叠监视
+        $("a.collapsed").click(function() {
+            if($(this).attr("aria-expanded") == "true") {
+                $("#col-icon").removeClass("glyphicon-chevron-up");
+                $("#col-icon").addClass("glyphicon-chevron-down");
+            } else {
+                $("#col-icon").removeClass("glyphicon-chevron-down");
+                $("#col-icon").addClass("glyphicon-chevron-up");
+            }
+        });
+
     });
 
     Token.qrCode = function(text) {
-        $("#qrcode").html("").qrcode({
-            text: text, 
-            render:  render_method,
-            width: $("#qrcode_width").val(), 
-            height: $("#qrcode_height").val(),
-            background: $("#qrcode_bgcolor").val(),
-            foreground: $("#qrcode_fcolor").val()
-        });
+        var width = parseInt($("#qrcode_width").val());
+        var height = parseInt($("#qrcode_height").val());
+        if(width < 64 || height < 64) Token.alert('二维码尺寸参数错误！');
+        else {
+            $("#qrcode").html("").qrcode({
+                text: text, 
+                render: render_method,
+                width: width, 
+                height: height,
+                correctLevel: parseInt($("#qrcode_error").val()),
+                background: $("#qrcode_bgcolor").val(),
+                foreground: $("#qrcode_fcolor").val()
+            });
+        }
     };
 
     </script>
