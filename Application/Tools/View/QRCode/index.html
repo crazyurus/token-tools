@@ -18,6 +18,7 @@
                 <li role="presentation"><a href="#qun" aria-controls="qun" role="tab" data-toggle="tab">QQ群</a></li>
                 <li role="presentation"><a href="#weibo" aria-controls="weibo" role="tab" data-toggle="tab">微博</a></li>
                 <li role="presentation"><a href="#wechat" aria-controls="wechat" role="tab" data-toggle="tab">微信</a></li>
+                <li role="presentation"><a href="#app" aria-controls="app" role="tab" data-toggle="tab">App</a></li>
             </ul>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="url">
@@ -93,6 +94,25 @@
                         <button type="submit" class="btn btn-primary" id="btn_wechat"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>生成</button>
                     </form>
                 </div>
+                <div role="tabpanel" class="tab-pane" id="app">
+                    <form onsubmit="return false;">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Scheme</span>
+                                <input type="url" class="form-control" id="txt_app" placeholder="3nVBWU7EEhNtrQo69yDM" required>
+                            </div>
+                            <div class="btn-group app-group" role="group" data-toggle="buttons">
+                                <label class="btn btn-default" data-url="market://details?id=com.wutnews.bus.main">
+                                    <input type="radio" autocomplete="off">掌上理工大Android </label>
+                                <label class="btn btn-default" data-url="https://appsto.re/cn/AtmF5.i">
+                                    <input type="radio" autocomplete="off">掌上理工大iOS </label>
+                                <label class="btn btn-default" data-url="https://appsto.re/cn/M33O5.i">
+                                    <input type="radio" autocomplete="off">理工发布iOS </label>
+                                </div>
+                            </div>
+                        <button type="submit" class="btn btn-primary" id="btn_app"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>生成</button>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="col-md-3">
@@ -141,6 +161,15 @@
             else Token.alert("微信ID的格式不正确，请重新输入！");
         });
 
+        // App
+        $("#btn_app").click(function() {
+            var app = $('#txt_app').val().trim();
+            if (Token.check.url(app)) {
+                $("#qrcode").html("").qrcode(app);
+            }
+            else Token.alert("Scheme的格式不正确，请重新输入！");
+        });
+
         // 微博选择监视
         $(".weibo-group label").click(function() {
             $("#txt_weibo").val($(this).data("uid"));
@@ -149,6 +178,11 @@
         // 微信选择监视
         $(".wechat-group label").click(function() {
             $("#txt_wechat").val($(this).data("id"));
+        });
+
+        // App选择监视
+        $(".app-group label").click(function() {
+            $("#txt_app").val($(this).data("url"));
         });
 
     });
