@@ -226,15 +226,15 @@
                                             <label class="btn btn-default active">
                                             <input type="radio" autocomplete="off" checked><div class="full-70">无</div> </label>
                                             <label class="btn btn-default">
-                                                <input type="radio" autocomplete="off"><img src="__IMAGE__/center/iwut.png" title="掌上理工大iOS" /> </label>
+                                                <input type="radio" autocomplete="off"><img src="__IMAGE__/preview/iwut.png" title="掌上理工大iOS" /> </label>
                                             <label class="btn btn-default">
-                                                <input type="radio" autocomplete="off"><img src="__IMAGE__/center/wechat.png" title="Token团队微信" /> </label>
+                                                <input type="radio" autocomplete="off"><img src="__IMAGE__/preview/wechat.png" title="Token团队微信" /> </label>
                                             <label class="btn btn-default">
-                                                <input type="radio" autocomplete="off"><img src="__IMAGE__/center/token.png" title="Token团队Logo" /> </label>
+                                                <input type="radio" autocomplete="off"><img src="__IMAGE__/preview/token.png" title="Token团队Logo" /> </label>
                                             <label class="btn btn-default">
-                                                <input type="radio" autocomplete="off"><img src="__IMAGE__/center/planet.png" title="Token Planet" /> </label>
+                                                <input type="radio" autocomplete="off"><img src="__IMAGE__/preview/planet.png" title="Token Planet" /> </label>
                                             <label class="btn btn-default">
-                                                <input type="radio" autocomplete="off"><img src="__IMAGE__/center/wutnews.png" title="经纬网" /> </label>
+                                                <input type="radio" autocomplete="off"><img src="__IMAGE__/preview/wutnews.png" title="经纬网" /> </label>
                                         </div>
                                     </div>
                                 </div>
@@ -359,7 +359,7 @@
         $(".logo-group label").click(function() {
             if($(this).attr("disabled")) return false;
             if($(this).find("img")) {
-                logo_url = $(this).find("img").attr("src");
+                logo_url = $(this).find("img").attr("src").replace("preview", "center");
             }
             else logo_url = "";
         });
