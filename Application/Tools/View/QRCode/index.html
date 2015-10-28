@@ -17,6 +17,10 @@
             height: 70px;
             padding-top: 24px;
         }
+
+        .btn-disabled {
+            cursor: not-allowed;
+        }
     </style>
 </block>
 <block name="body">
@@ -292,10 +296,23 @@
         // 渲染选择监视
         $(".render-group label").click(function() {
             render_method = $(this).text().trim().toLowerCase();
+            switch(render_method) {
+                case 'canvas':
+                    $(".logo-group label:not(':first')").removeAttr("disabled").removeClass("btn-disabled");
+                    break;
+                case 'table':
+                    $(".logo-group label:not(':first')").removeClass("active").attr("disabled", "disabled").addClass("btn-disabled");
+                    $(".logo-group label:first").addClass("active");
+                    logo_url = "";
+                    break;
+                default:
+                    Token.alert("无效的二维码渲染参数！");
+            }
         });
 
         // Logo选择监视
         $(".logo-group label").click(function() {
+            if($(this).attr("disabled")) return false;
             if($(this).find("img")) {
                 logo_url = $(this).find("img").attr("src");
             }
@@ -311,6 +328,11 @@
                 $("#col-icon").removeClass("glyphicon-chevron-down");
                 $("#col-icon").addClass("glyphicon-chevron-up");
             }
+        });
+
+        // 二维码大小监视
+        $("#qrcode_width").change(function() {
+            $("#qrcode_height").val($(this).val());
         });
 
     });
