@@ -36,13 +36,13 @@ class UrlController extends CommonController {
     	$result = $this->model->where("`app_short`='%s'", $app)->find();
     	$url = '';
     	if($result) {
-    		if(preg_match('/ipad|ipod|iphone|ios/', $user_agent)) {
+    		if(preg_match('/(ipad|ipod|iphone|ios)/i', $user_agent)) {
     			$url = 'https://appsto.re/cn/'.$result['ios_url'];
     		}
-    		elseif(preg_match('/android|yunos/', $user_agent)) {
+    		elseif(preg_match('/(android|yunos)/i', $user_agent)) {
     			$url = $this->trans_android_url($result['android_url']);
     		}
-    		elseif(preg_match('/windows phone/', $user_agent)) {
+    		elseif(preg_match('/windows phone/i', $user_agent)) {
     			$url = 'http://www.windowsphone.com/zh-cn/store/app/'.$result['wp_url'];
     		}
     		if(empty($url)) $url = $result['default_url'];

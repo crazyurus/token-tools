@@ -40,7 +40,7 @@
                     <form onsubmit="return false;">
                         <div class="form-group">
                             <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">网址</span>
+                                <span class="input-group-addon">网址</span>
                                 <input type="url" class="form-control" id="txt_url" placeholder="http://www.wutnews.net/" required>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                     <form onsubmit="return false;">
                         <div class="form-group">
                             <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">QQ</span>
+                                <span class="input-group-addon">QQ</span>
                                 <input type="tel" class="form-control" id="txt_qq" placeholder="2577438164" maxlength="11" required>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                     <form onsubmit="return false;">
                         <div class="form-group">
                             <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">QQ群</span>
+                                <span class="input-group-addon">QQ群</span>
                                 <input type="tel" class="form-control" id="txt_qun" placeholder="313594349" maxlength="11" required>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                     <form onsubmit="return false;">
                         <div class="form-group">
                             <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">微博uid</span>
+                                <span class="input-group-addon">微博uid</span>
                                 <input type="tel" class="form-control" id="txt_weibo" placeholder="1213740967" maxlength="12" required>
                             </div>
                             <div class="btn-group weibo-group" role="group" data-toggle="buttons">
@@ -96,7 +96,7 @@
                     <form onsubmit="return false;">
                         <div class="form-group">
                             <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">微信ID</span>
+                                <span class="input-group-addon">微信ID</span>
                                 <input type="text" class="form-control" id="txt_wechat" placeholder="3nVBWU7EEhNtrQo69yDM" required>
                             </div>
                             <div class="btn-group wechat-group" role="group" data-toggle="buttons">
@@ -172,13 +172,19 @@
                         <div class="panel-body">
                             <form onsubmit="return false;" class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">宽度(px)：</label>
+                                    <label class="col-sm-2 control-label">宽度：</label>
                                     <div class="col-sm-4">
-                                        <input type="tel" id="qrcode_width" class="form-control" autocomplete="off" value="256" maxlength="4" />
+                                        <div class="input-group">
+                                            <input type="number" id="qrcode_width" class="form-control" autocomplete="off" value="256" maxlength="4" />
+                                            <span class="input-group-addon">px</span>
+                                        </div>
                                     </div>
-                                    <label class="col-sm-2 control-label">高度(px)：</label>
+                                    <label class="col-sm-2 control-label">高度：</label>
                                     <div class="col-sm-4">
-                                        <input type="tel" id="qrcode_height" class="form-control" autocomplete="off" value="256" maxlength="4" />
+                                        <div class="input-group">
+                                            <input type="number" id="qrcode_height" class="form-control" autocomplete="off" value="256" maxlength="4" />
+                                            <span class="input-group-addon">px</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
