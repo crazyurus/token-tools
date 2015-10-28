@@ -49,7 +49,7 @@ button.push-20 {
     margin-bottom: 8px;
 }
 
-button > span.glyphicon {
+button > span.glyphicon, a > span.glyphicon {
     margin-right: 6px;
     height: 16px;
     width: 16px;
