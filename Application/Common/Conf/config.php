@@ -4,7 +4,7 @@ return array(
 	'URL_ROUTER_ON'   => true,
 	'URL_ROUTE_RULES'=>array(
 	    '/^[A-Za-z0-9]{6}$/' => 'Tools/DWZ/url',
-        '/^app\/[^\s]*$/'    => 'Tools/App/download',
+        '/^app\/[^\s]*$/'    => 'Tools/Url/download',
 	    ''                   => 'Home/Index/index'
 	),
 

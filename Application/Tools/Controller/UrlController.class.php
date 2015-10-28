@@ -2,7 +2,7 @@
 namespace Tools\Controller;
 use Think\Controller;
 
-class AppController extends CommonController {
+class UrlController extends CommonController {
 
 	protected $model;
 
@@ -11,12 +11,15 @@ class AppController extends CommonController {
     }
 
 	public function modify() {
-        try {
-            $this->model->data($_POST)->save();
-            $this->ajaxSuccess($this->model->field('app_short')->find($_POST['id'])['app_short']);
-        } catch(\Exception $e) {
-            $this->ajaxError("生成失败，请检查输入的信息是否正确");
-        }
+        if(empty($_POST['id'])) $this->ajaxError("无效的请求！");
+        else {
+            try {
+                $this->model->data($_POST)->save();
+                $this->ajaxSuccess($this->model->field('app_short')->find($_POST['id'])['app_short']);
+            } catch(\Exception $e) {
+                $this->ajaxError("生成失败，请检查输入的信息是否正确");
+            }
+        } 
 	}
 
 	public function getinfo($id) {
