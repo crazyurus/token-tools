@@ -29,22 +29,14 @@
         var start_pos = (page - 1) * per_page;
         var qq = "2577438164";
 
-        // 配置Ajax
-        $.ajaxSetup({
-            error: function(x,e){
-                Token.alert("连接QQ空间服务器失败，请稍后再试！");
-                return false;
-            }
-        });
-
         // 获取说说数据
         $.getJSON("http://m.qzone.com/list?format=jsonp&list_type=shuoshuo&action=0&res_attach=att%3D" + start_pos + "&res_uin=" + qq + "&count=" + per_page + "&sid=Ab657PodbD4ZooRGW-S_6MNm&jsoncallback=?");
 
 
         function _Callback(result) {
             // 判断是否获取成功
-            if(typeof(result) == "undefined") {
-                Token.alert("获取说说失败，请检查网络！");
+            if(typeof(result.data) == "undefined") {
+                Token.message.alert("获取说说信息失败，请检查网络！");
                 return false;
             }
             // 计算总的说说数

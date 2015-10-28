@@ -159,8 +159,8 @@
         // 计算哈希
         $("#btn_hash_calc").click(function() {
             var text = $("#txt_hash").val().trim();
-            if(text == "") Token.alert("请输入需要计算的文本值");
-            else if(hash_func == "") Token.alert("请选择哈希函数");
+            if(text == "") Token.message.alert("请输入需要计算的文本值");
+            else if(hash_func == "") Token.message.alert("请选择哈希函数");
             else {
                 Token.ajax("{:U('Tools/Encode/hash')}", { text: text, hash: hash_func }, function(data) {
                         $("#txt_hash_result").val(data);

@@ -32,7 +32,7 @@
     				$("#result").show().find("span.link").html("<a href=\"http://token.team/" + data + "\" target=\"_blank\">token.team/" + data +"</a>");
     			});
     		} else {
-    			Token.alert("Url的格式不正确，请检查是否含有http协议部分。");
+    			Token.message.alert("Url的格式不正确，请检查是否含有http协议部分。");
     		}
     	});
     });

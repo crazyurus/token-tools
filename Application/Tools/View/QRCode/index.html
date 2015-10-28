@@ -275,7 +275,7 @@
             if (Token.check.url(url)) {
                 Token.qrCode(url);
             }
-            else Token.alert("Url的格式不正确，请重新输入！");
+            else Token.message.alert("Url的格式不正确，请重新输入！");
         });
 
         // QQ
@@ -285,7 +285,7 @@
                 Token.qrCode("http://wpa.qq.com/msgrd?v=3&uin="+qq+"&site=qq&menu=yes");
                 $("#connect_qq").html("QQ状态：<a target=\"_blank\" href=\"http://wpa.qq.com/msgrd?v=3&uin="+qq+"&site=qq&menu=yes\"><img border=\"0\" src=\"http://wpa.qq.com/pa?p=2:"+qq+":42\" alt=\"QQ\" title=\"通过QQ联系\"></a>");
             }
-            else Token.alert("QQ号的格式不正确，请重新输入！");
+            else Token.message.alert("QQ号的格式不正确，请重新输入！");
         });
 
         // 微博
@@ -294,7 +294,7 @@
             if (Token.check.weibo(weibo)) {
                 Token.qrCode("http://weibo.cn/qr/userinfo?uid="+weibo);
             }
-            else Token.alert("微博uid的格式不正确，请重新输入！");
+            else Token.message.alert("微博uid的格式不正确，请重新输入！");
         });
 
         // 微信
@@ -303,7 +303,7 @@
             if (wechat != "") {
                 Token.qrCode("http://weixin.qq.com/r/"+wechat);
             }
-            else Token.alert("微信ID的格式不正确，请重新输入！");
+            else Token.message.alert("微信ID的格式不正确，请重新输入！");
         });
 
         // App
@@ -315,8 +315,8 @@
                 wp_url: $("#txt_app_wp").val(),
                 default_url: $("#txt_app_default").val()
             };        
-            if(data.id == 0) Token.alert("请先选择App");
-            else if(data.android_url == "" || data.default_url == "") Token.alert("请输入App的下载地址信息！");
+            if(data.id == 0) Token.message.alert("请先选择App");
+            else if(data.android_url == "" || data.default_url == "") Token.message.alert("请输入App的下载地址信息！");
             else {
                 Token.ajax("{:U('Tools/Url/modify')}", data, function(data) {
                     Token.qrCode("http://token.team/app/" + data);
@@ -358,7 +358,7 @@
                     logo_url = "";
                     break;
                 default:
-                    Token.alert("无效的二维码渲染参数！");
+                    Token.message.alert("无效的二维码渲染参数！");
             }
         });
 
@@ -408,7 +408,7 @@
     Token.qrCode = function(text) {
         var width = parseInt($("#qrcode_width").val());
         var height = parseInt($("#qrcode_height").val());
-        if(width < 64 || height < 64) Token.alert("二维码尺寸参数错误！");
+        if(width < 64 || height < 64) Token.message.alert("二维码尺寸参数错误！");
         else {
             $("#qrcode").html("").qrcode({
                 text: text, 
