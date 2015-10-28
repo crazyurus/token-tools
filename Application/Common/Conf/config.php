@@ -27,5 +27,6 @@ return array(
 
     // 其它
     'URL_CASE_INSENSITIVE' => true,
-    'URL_MODEL'             =>  2,
+    'URL_MODEL'            =>  2,
+    'URL_HTML_SUFFIX'      =>  ''
 );

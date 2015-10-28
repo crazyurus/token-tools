@@ -23,6 +23,23 @@ var Token = {
 			return /^[0-9]{8,12}$/.test(weibo);
 		}
 	},
+	detect: {
+		isIE: function() {
+            return !!window.ActiveXObject || "ActiveXObject" in window;
+		},
+		isChrome: function() {
+			return !!window.chrome;
+		},
+		isFirefox: function() {
+			return !!window.netscape;
+		},
+		isOpera: function() {
+			return !!window.opera;
+		},
+		isSafari: function() {
+			return navigator.userAgent.indexOf("Safari")>-1 && navigator.userAgent.indexOf("Chrome")<1;
+		}
+	},
 	variable: ""
 };
 

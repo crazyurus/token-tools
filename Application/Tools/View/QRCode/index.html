@@ -252,7 +252,7 @@
         </div>
         <div class="col-md-3">
             <a class="thumbnail" id="qrcode"><img src="__IMAGE__/blank.png" alt="二维码" title="二维码" /></a>
-            <p class="text-center"><a href="" id="btn_download" class="btn btn-default btn-block" target="_blank" download="qrcode.png" disabled><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>下载</a></p>
+            <p class="text-center"><a href="" id="btn_download" class="btn btn-default btn-block" target="_blank" download="qrcode.png" data-loading-text="生成中..."  disabled><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>下载</a></p>
         </div>
     </div> 
 </block>
@@ -389,8 +389,12 @@
 
         // 下载按钮
         $("#btn_download").click(function() {
-            if($(this).attr("href") == "") return false;
+            if($(this).attr("href") == "" || render_method == "table" || Token.detect.isIE()) return false;
         });
+
+        if(Token.detect.isIE()) {
+            $("#btn_download").html("不支持使用IE下载");
+        }
 
         function setAppUrl(android, ios, wp, def) {
             $("#txt_app_ios").val(ios);
@@ -416,7 +420,16 @@
                 foreground: $("#qrcode_fcolor").val(),
                 src: logo_url
             });
-            $("#btn_download").removeAttr("disabled").attr("href", $("canvas")[0].toDataURL("image/png"));
+            if(render_method == "table") {
+                $("#btn_download").attr("disabled", "disabled").html("Table渲染方式不支持下载");
+            }
+            else if(!Token.detect.isIE()) {
+                $("#btn_download").button("loading");
+                setTimeout(function() {
+                    $("#btn_download").attr("href", $("canvas")[0].toDataURL("image/png")).removeAttr("disabled").button("reset");
+                }, 1500);  
+            }
+             
         }
     };
 
