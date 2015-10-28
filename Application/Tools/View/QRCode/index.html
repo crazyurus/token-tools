@@ -110,21 +110,51 @@
                     </form>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="app">
-                    <form onsubmit="return false;">
+                    <form onsubmit="return false;" class="form-horizontal">
                         <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Scheme</span>
-                                <input type="url" class="form-control" id="txt_app" placeholder="" required>
+                            <label class="col-sm-2 control-label">App名称：</label>
+                            <div class="col-sm-10">
+                                <select class="selectpicker" id="list_app">
+                                    <option value="0">请选择……</option>
+                                    <option value="1">掌上理工大</option>
+                                    <option value="2">理工发布</option>
+                                </select>
                             </div>
-                            <div class="btn-group app-group" role="group" data-toggle="buttons">
-                                <label class="btn btn-default" data-url="market://details?id=com.wutnews.bus.main">
-                                    <input type="radio" autocomplete="off">掌上理工大Android </label>
-                                <label class="btn btn-default" data-url="https://appsto.re/cn/AtmF5.i">
-                                    <input type="radio" autocomplete="off">掌上理工大iOS </label>
-                                <label class="btn btn-default" data-url="https://appsto.re/cn/M33O5.i">
-                                    <input type="radio" autocomplete="off">理工发布iOS </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Android：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">market://details?id=</span>
+                                    <input type="text" class="form-control" id="txt_app_android" placeholder="com.wutnews.bus.main  或  http://app.wutnews.net/apps/BUS" required>
+                                    <span class="input-group-addon">.apk</span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">iOS：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">https://appsto.re/cn/</span>
+                                    <input type="text" class="form-control" id="txt_app_ios" placeholder="AtmF5.i">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Windows Phone：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">http://www.windowsphone.com/zh-cn/store/app/</span>
+                                    <input type="text" class="form-control" id="txt_app_wp" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">默认(电脑版)：</label>
+                            <div class="col-sm-10">
+                                <input type="url" class="form-control" id="txt_app_default" placeholder="http://app.wutnews.net/" required>
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-primary" id="btn_app"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>生成</button>
                     </form>
                 </div>
@@ -271,11 +301,20 @@
 
         // App
         $("#btn_app").click(function() {
-            var app = $('#txt_app').val().trim();
-            if (Token.check.url(app)) {
-                Token.qrCode(app);
+            var data = {
+                id:  $("#list_app").val(),
+                ios_url: $("#txt_app_ios").val(),
+                android_url: $("#txt_app_android").val(),
+                wp_url: $("#txt_app_wp").val(),
+                default_url: $("#txt_app_default").val()
+            };        
+            if(data.id == 0) Token.alert("请先选择App");
+            else if(data.android_url == "" || data.default_url == "") Token.alert("请输入App的下载地址信息！");
+            else {
+                Token.ajax("{:U('Tools/App/modify')}", data, function(data) {
+                    Token.qrCode("http://token.team/app/" + data);
+                });
             }
-            else Token.alert("Scheme的格式不正确，请重新输入！");
         });
 
         // 微博选择监视
@@ -289,8 +328,14 @@
         });
 
         // App选择监视
-        $(".app-group label").click(function() {
-            $("#txt_app").val($(this).data("url"));
+        $("#list_app").change(function() {
+            var app = $(this).val();
+            if(app == 0) setAppUrl("", "", "", "");
+            else {
+                Token.ajax("{:U('Tools/App/getinfo')}?id=" + app, {}, function(data) {
+                    setAppUrl(data.android_url, data.ios_url, data.wp_url, data.default_url);
+                });
+            }
         });
 
         // 渲染选择监视
@@ -334,6 +379,13 @@
         $("#qrcode_width").change(function() {
             $("#qrcode_height").val($(this).val());
         });
+
+        function setAppUrl(android, ios, wp, def) {
+            $("#txt_app_ios").val(ios);
+            $("#txt_app_android").val(android);
+            $("#txt_app_wp").val(wp);
+            $("#txt_app_default").val(def);
+        };
 
     });
 

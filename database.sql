@@ -10,10 +10,25 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-10-26 22:45:47
+Date: 2015-10-28 16:47:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for app
+-- ----------------------------
+DROP TABLE IF EXISTS `app`;
+CREATE TABLE `app` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app_name` varchar(32) DEFAULT NULL COMMENT 'App名称',
+  `android_url` varchar(64) DEFAULT NULL COMMENT 'Android',
+  `ios_url` varchar(64) DEFAULT NULL COMMENT 'iOS',
+  `wp_url` varchar(64) DEFAULT NULL COMMENT 'Windows Phone',
+  `default_url` varchar(64) DEFAULT NULL,
+  `app_short` varchar(16) DEFAULT NULL COMMENT 'app缩写',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for shorturl
@@ -28,4 +43,10 @@ CREATE TABLE `shorturl` (
   `user_ip` varchar(16) DEFAULT NULL COMMENT '用户IP',
   PRIMARY KEY (`id`),
   UNIQUE KEY `check_short` (`short_url`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of app
+-- ----------------------------
+INSERT INTO `app` VALUES ('1', '掌上理工大', 'com.wutnews.bus.main', 'AtmF5.i', '', 'http://app.wutnews.net/', 'iwut');
+INSERT INTO `app` VALUES ('2', '理工发布', null, 'M33O5.i', null, 'http://lgfb.wutnews.net/', 'lgfb');
