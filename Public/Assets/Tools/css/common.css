@@ -131,3 +131,12 @@ textarea {
     height: 300px;
     overflow-y: auto;
 }
+
+input[type=color] {
+    background: none;
+    border: none;
+    width: 16px;
+    height: 19px;
+    padding: 0;
+    margin: 0;
+}

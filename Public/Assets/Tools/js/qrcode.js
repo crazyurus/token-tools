@@ -4,8 +4,25 @@ var logo_url = "";
 $(document).ready(function() {
 
     // ColorPicker初始化
-    $(".fore-color").colorpicker();
-    $(".bg-color").colorpicker();
+    if(Token.detect.isIE()) {
+        $("input[type=color]").remove();
+        $(".fore-color").colorpicker();
+        $(".bg-color").colorpicker();
+    }
+
+    // 双向绑定
+    $("#qrcode_fcolor").change(function() {
+        $("#qrcode_fcolor_picker").val($(this).val());
+    });
+    $("#qrcode_fcolor_picker").change(function() {
+        $("#qrcode_fcolor").val($(this).val());
+    });
+    $("#qrcode_bgcolor").change(function() {
+        $("#qrcode_bgcolor_picker").val($(this).val());
+    });
+    $("#qrcode_bgcolor_picker").change(function() {
+        $("#qrcode_bgcolor").val($(this).val());
+    });
 
     // 网址
     $("#btn_url").click(function() {
