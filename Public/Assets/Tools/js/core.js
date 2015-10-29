@@ -95,6 +95,9 @@ $("#go_top").click(function() {
 	$("body,html").animate({ scrollTop: 0}, 500);
 });
 
+// 设置PlaceHolder
+$("input, textarea").placeholder();
+
 // 设置进度条
 $(document).ready(function() { 
 	NProgress.start();
