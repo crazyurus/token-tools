@@ -24,7 +24,7 @@ var Token = {
 		}
 	},
 	detect: {
-		_useragent: navigator.userAgent,
+		_useragent: navigator.userAgent.toLowerCase(),
 		isIE: function() {
             return !!window.ActiveXObject || "ActiveXObject" in window;
 		},
@@ -38,7 +38,13 @@ var Token = {
 			return !!window.opera;
 		},
 		isSafari: function() {
-			return this._useragent.indexOf("Safari")>-1 && this._useragent.indexOf("Chrome")<1;
+			return this._useragent.indexOf("safari")>-1 && this._useragent.indexOf("chrome")<1;
+		},
+		isMQQBrowser: function() {
+			return this._useragent.indexOf("mqqbrowser")>-1;
+		},
+		isUCBrowser: function() {
+			return this._useragent.indexOf("ucbrowser")>-1;
 		},
 		getIEVer: function() {
 			var result = this._useragent.match(/(msie) ([\w.]+)/gi);

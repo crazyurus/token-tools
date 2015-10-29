@@ -125,9 +125,9 @@ $(document).ready(function() {
         if ($(this).attr("href") == "" || render_method == "table" || Token.detect.isIE()) return false;
     });
 
-    if (Token.detect.isIE()) {
-        $("#btn_download").html("不支持使用IE下载");
-    }
+    if (Token.detect.isIE()) $("#btn_download").html("不支持使用IE下载");
+    else if(Token.detect.isMQQBrowser()) $("#btn_download").html("不支持QQ浏览器下载");
+    else if(Token.detect.isUCBrowser()) $("#btn_download").html("不支持UC浏览器下载");
 
     if(!document.createElement("canvas").getContext) {
         $(".render-group label:last").click();
