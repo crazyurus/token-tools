@@ -1,6 +1,7 @@
 <extend name="Layout/common" />
 <block name="style">
     <link rel="stylesheet" type="text/css" href="__PLUGIN__/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" type="text/css" href="__PLUGIN__/bootstrap-lightbox/dist/bootstrap-lightbox.min.css">
     <style type="text/css">
         #qrcode {
             padding: 6px;
@@ -114,7 +115,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">App名称：</label>
                             <div class="col-sm-10">
-                                <select class="selectpicker" id="list_app">
+                                <select class="selectpicker" id="list_app" {$mobile|show_mobile}>
                                     <option value="0">请选择……</option>
                                     <option value="1">掌上理工大</option>
                                     <option value="2">理工发布</option>
@@ -201,11 +202,11 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">纠错等级：</label>
                                     <div class="col-sm-10">
-                                        <select class="selectpicker" id="qrcode_error">
-                                            <option value="1">QRErrorCorrectLevel.L</option>
-                                            <option value="0">QRErrorCorrectLevel.M</option>
-                                            <option value="3">QRErrorCorrectLevel.Q</option>
-                                            <option value="2" selected>QRErrorCorrectLevel.H</option>
+                                        <select class="selectpicker" id="qrcode_error" {$mobile|show_mobile}>
+                                            <option value="0" data-subtext="较差">QRErrorCorrectLevel.M</option>
+                                            <option value="1" data-subtext="一般">QRErrorCorrectLevel.L</option>
+                                            <option value="2" data-subtext="良好" selected>QRErrorCorrectLevel.H</option>
+                                            <option value="3" data-subtext="最好">QRErrorCorrectLevel.Q</option>
                                         </select>
                                     </div>
                                 </div>
@@ -260,10 +261,11 @@
                 </p>
             </div>
         </div>
-    </div> 
+    </div>
 </block>
 <block name="script">
     <script type="text/javascript" src="__PLUGIN__/jquery-qrcode/jquery.qrcode.min.js"></script>
     <script type="text/javascript" src="__PLUGIN__/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+    <script type="text/javascript" src="__PLUGIN__/bootstrap-lightbox/dist/bootstrap-lightbox.min.js"></script>
     <script type="text/javascript" src="__TOOLS__/js/qrcode.js"></script>
 </block>

@@ -129,6 +129,11 @@ $(document).ready(function() {
         $("#btn_download").html("不支持使用IE下载");
     }
 
+    if(!document.createElement("canvas").getContext) {
+        $(".render-group label:last").click();
+        $(".render-group label:first").attr("disabled", "disabled");
+    }
+
     function setAppUrl(android, ios, wp, def) {
         $("#txt_app_ios").val(ios);
         $("#txt_app_android").val(android);

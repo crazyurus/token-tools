@@ -19,5 +19,13 @@ function short_url($url) {
 }
 
 function check_active($tool) {
-    if(strtolower($tool) == I('path.0')) echo 'class="active"';
+    if(strtolower($tool) == I('path.0')) echo ' class="active"';
+}
+
+function check_mobile() {
+    return !!preg_match('/(ipad|ipod|iphone|ios|android|yunos|windows phone|nokia|symbian|meego|mobile|mobi)/i', $_SERVER['HTTP_USER_AGENT']);
+}
+
+function show_mobile($flag) {
+    if($flag) echo ' data-mobile="true"';
 }
