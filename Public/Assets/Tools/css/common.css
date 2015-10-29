@@ -132,11 +132,11 @@ textarea {
     overflow-y: auto;
 }
 
-input[type=color] {
-    background: none;
-    border: none;
+.block-color {
+    display: inline-block;
     width: 16px;
-    height: 19px;
-    padding: 0;
-    margin: 0;
+    height: 16px;
+    vertical-align: middle !important;
+    cursor: pointer;
+    border: 1px solid #000;
 }
