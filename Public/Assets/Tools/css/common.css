@@ -10,8 +10,10 @@ h3 {
     margin-bottom: 20px;
 }
 
-.elem-fixed {
-    position: fixed;
+@media (min-width: 768px) {
+    .elem-fixed {
+        position: fixed;
+    }
 }
 
 div.height-350 {
