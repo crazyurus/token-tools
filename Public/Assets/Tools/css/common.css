@@ -14,6 +14,10 @@ h3 {
     position: fixed;
 }
 
+div.height-350 {
+    height: 350px;
+}
+
 .alert-top {
     margin-top: 20px;
 }

@@ -20,9 +20,8 @@ return array(
     // 模板参数
     'TMPL_PARSE_STRING' => array(
         '__BOOTSTRAP__' =>  __ROOT__.'/Public/Bootstrap',
-        '__IMAGE__' => __ROOT__.'/Public/Common/image',
-        '__COMMON__' => __ROOT__.'/Public/Common',
-        '__DWZ__' => __ROOT__.'/Public/Tools/DWZ',
+        '__TOOLS__' => __ROOT__.'/Public/Assets/Tools',
+        '__PLUGIN__' => __ROOT__.'/Public/Plugin'
     ),
 
     // 其它
