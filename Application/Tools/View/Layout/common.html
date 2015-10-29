@@ -16,33 +16,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">导航</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="navbar-header">
-                <a class="navbar-brand" title="Token团队工具包" href="{:U('/tools/')}"><img src="__TOOLS__/image/logo.png" /><strong>Token Tools</strong></a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li <?php check_active('DWZ'); ?>><a href="{:U('/tools/DWZ/')}">短网址</a></li>
-                    <li <?php check_active('QRCode'); ?>><a href="{:U('/tools/QRCode/index')}">二维码</a></li>
-                    <li <?php check_active('encode'); ?>><a href="{:U('/tools/encode/index')}">编解码</a></li>
-                    <li <?php check_active('MarkDown'); ?>><a href="{:U('/tools/MarkDown/')}">MarkDown</a></li>
-                    <li <?php check_active('talk'); ?>><a href="{:U('/tools/talk/')}">说说统计</a></li>
-                    <li <?php check_active('detect'); ?>><a href="{:U('/tools/detect/index')}">浏览器检测</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="//token.team/" target="_blank">关于Token</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <include file="Layout/navbar" />
     <div class="container">
         <div class="alert alert-warning alert-dismissible alert-top" hidden>
             <button type="button" class="close" data-name=""><span>&times;</span><span class="sr-only">关闭</span></button>
