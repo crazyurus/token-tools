@@ -32,7 +32,7 @@ var Token = {
 			return !!window.chrome;
 		},
 		isFirefox: function() {
-			return !!window.netscape;
+			return !!window.netscape && !!window.Iterator;
 		},
 		isOpera: function() {
 			return !!window.opera;
@@ -80,7 +80,11 @@ var Token = {
 		prompt: bootbox.prompt,
 		dialog: bootbox.dialog,
 		topbar: function(name, text) {
-			if(!Token.storage.has("top_"+name)) $("body > div.container").prepend("<div class=\"alert alert-warning alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" onclick=\"javascript:Token.storage.set('top_"+name+"', true);\"><span>&times;</span><span class=\"sr-only\">关闭</span></button><span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;" + text + "</div>");
+			if(!Token.storage.has("top_"+name)) {
+				$(".alert-top").show();
+				$(".alert-top > button").data("name", name);
+				$(".alert-top > .top-text").html(text);
+			}
 		}
 	},
 	variable: ""
@@ -100,6 +104,13 @@ $(document).ready(function() {
 	if(Token.detect.isIE() && ie_ver < 10) {
 		Token.message.topbar("iever", "检测到正在使用 Internet Explorer " + ie_ver+ "。为了更好地浏览本网站，请将浏览器升级到更高版本或更换为其它浏览器。");
 	}
+
+	// 警告框关闭
+	$(".alert-top > button").click(function() {
+		var name = $(this).data("name");
+		if(name != "") Token.storage.set("top_"+name, true);
+		$(".alert-top").slideUp("fast");
+	});
 });
 
 $(window).load(function() {  
