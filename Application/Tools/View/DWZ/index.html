@@ -19,7 +19,8 @@
             </div>
             <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>生成</button>
         </form>
-    </div> 
+    </div>
+    <p>本短网址服务提供API供开发者使用，点击查看<a href="{:U('Tools/DWZ/api', '', '.md')}" target="_blank">接口文档</a>。</p>
 </block>
 <block name="script">
     <script type="text/javascript">
@@ -28,7 +29,7 @@
     		var url = $("#txt_url").val();
     		var title = $("#txt_title").val();
     		if(Token.check.url(url)) {
-    			Token.ajax("{:U('Tools/DWZ/add')}", { url: url, title: title }, function(data) {
+    			Token.ajax("{:U('Tools/DWZ/add', '', '.do')}", { url: url, title: title }, function(data) {
     				$("#result").show().find("span.link").html("<a href=\"http://token.team/" + data + "\" target=\"_blank\">token.team/" + data +"</a>");
     			});
     		} else {

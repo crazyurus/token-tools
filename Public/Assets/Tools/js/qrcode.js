@@ -52,7 +52,7 @@ $(document).ready(function() {
         if (data.id == 0) Token.message.alert("请先选择App");
         else if (data.android_url == "" || data.default_url == "") Token.message.alert("请输入App的下载地址信息！");
         else {
-            Token.ajax(Token.variable.app + "/tools/url/modify", data, function(data) {
+            Token.ajax(Token.variable.app + "/tools/url/modify.do", data, function(data) {
                 Token.qrCode("http://token.team/app/" + data);
             });
         }
@@ -73,7 +73,7 @@ $(document).ready(function() {
         var app = $(this).val();
         if (app == 0) setAppUrl("", "", "", "");
         else {
-            Token.ajax(Token.variable.app + "/tools/url/getinfo?id=" + app, {}, function(data) {
+            Token.ajax(Token.variable.app + "/tools/url/getinfo.do?id=" + app, {}, function(data) {
                 setAppUrl(data.android_url, data.ios_url, data.wp_url, data.default_url);
             });
         }

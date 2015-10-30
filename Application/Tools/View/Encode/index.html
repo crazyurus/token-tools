@@ -102,7 +102,8 @@
                         <textarea class="form-control" rows="12" id="txt_base64_encode"></textarea>
                     </div>
                 </div>
-                <div class="col-sm-2 text-center margin-top-80">
+                <div class="col-sm-2 text-center">
+                    <div class=" margin-top-80 hidden-sm"></div>
                     <p><button type="button" class="btn btn-success" id="btn_base64_encode"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>加密</button></p>
                     <p><button type="button" class="btn btn-danger" id="btn_base64_decode"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>解密</button></p>
                 </div>
@@ -162,7 +163,7 @@
             if(text == "") Token.message.alert("请输入需要计算的文本值");
             else if(hash_func == "") Token.message.alert("请选择哈希函数");
             else {
-                Token.ajax("{:U('Tools/Encode/hash')}", { text: text, hash: hash_func }, function(data) {
+                Token.ajax("{:U('Tools/Encode/hash', '', '.do')}", { text: text, hash: hash_func }, function(data) {
                         $("#txt_hash_result").val(data);
                 });
             }
