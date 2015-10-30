@@ -14,6 +14,10 @@ class DWZController extends CommonController {
 		$this->display();
 	}
 
+	public function api() {
+		$this->display();
+	}
+
 	public function add() {
 		$origin_url = I('post.url');
 		$title = I('post.title', '');

@@ -10,9 +10,9 @@ h3 {
     margin-bottom: 20px;
 }
 
-@media (min-width: 768px) {
-    .elem-fixed {
-        position: fixed;
+@media (max-width: 768px) {
+    .affix {
+        position: static;
     }
 }
 
