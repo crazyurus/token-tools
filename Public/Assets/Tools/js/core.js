@@ -46,6 +46,9 @@ var Token = {
 		isUCBrowser: function() {
 			return this._useragent.indexOf("ucbrowser")>-1;
 		},
+		isMobile: function() {
+			return /(ipad|ipod|iphone|ios|android|yunos|windows phone|nokia|symbian|meego|mobile|mobi)/i.test(this._useragent);
+		},
 		getIEVer: function() {
 			var result = this._useragent.match(/(msie) ([\w.]+)/gi);
 			return result ? parseFloat(result[0].replace(/(msie) /i, "")) : 99;

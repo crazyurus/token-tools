@@ -29,3 +29,8 @@ function check_mobile() {
 function show_mobile($flag) {
     if($flag) echo ' data-mobile="true"';
 }
+
+function check_ie() {
+    $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+    return strpos($user_agent, 'trident') !== false && (strpos($user_agent, 'msie') !== false || strpos($user_agent, 'rv:11') !== false);
+}
