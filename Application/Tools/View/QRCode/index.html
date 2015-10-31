@@ -2,6 +2,10 @@
 <block name="style">
     <link rel="stylesheet" type="text/css" href="__PLUGIN__/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
     <link rel="stylesheet" type="text/css" href="__PLUGIN__/bootstrap-lightbox/dist/bootstrap-lightbox.min.css">
+    <link rel="stylesheet" type="text/css" href="__PLUGIN__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+    <?php if(!check_ie()) { ?>
+    <link rel="stylesheet" type="text/css" href="__TOOLS__/css/range.css">
+    <?php } ?>
     <style type="text/css">
         #qrcode {
             padding: 6px;
@@ -35,6 +39,7 @@
                 <li role="presentation"><a href="#weibo" aria-controls="weibo" role="tab" data-toggle="tab">微博</a></li>
                 <li role="presentation"><a href="#wechat" aria-controls="wechat" role="tab" data-toggle="tab">微信</a></li>
                 <li role="presentation"><a href="#app" aria-controls="app" role="tab" data-toggle="tab">App</a></li>
+                <li role="presentation"><a href="#card" aria-controls="card" role="tab" data-toggle="tab">名片</a></li>
             </ul>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="url">
@@ -159,6 +164,88 @@
                         <button type="submit" class="btn btn-primary" id="btn_app"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>生成</button>
                     </form>
                 </div>
+                <div role="tabpanel" class="tab-pane" id="card">
+                    <form onsubmit="return false;" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">姓名：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="txt_card_name" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">部门：</label>
+                            <div class="col-sm-10">
+                                <select class="selectpicker" id="txt_card_department" {$mobile|show_mobile} required>
+                                    <option value="0">请选择……</option>
+                                    <optgroup label="Tech Group">
+                                        <option>技术部</option>
+                                        <option>设计部</option>
+                                        <option>产品部</option>
+                                        <option>运营部</option>
+                                    </optgroup>
+                                    <optgroup label="Content Group">
+                                        <option>内容部新闻经纬</option>
+                                        <option>内容部校园文化</option>
+                                        <option>内容部时政视窗</option>
+                                        <option>摄影部</option>
+                                    </optgroup>
+                                    <optgroup label="Affair Group">
+                                        <option>人力资源部</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">职务：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="txt_card_position" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">手机号：</label>
+                            <div class="col-sm-10">
+                                <input type="tel" class="form-control" id="txt_card_tel" autocomplete="off" maxlength="11" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">邮箱：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="txt_card_email" placeholder="token" required>
+                                    <span class="input-group-addon">@wutnews.net</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">生日：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input type="<?php if($mobile) echo 'date';else echo 'text'; ?>" class="form-control" id="txt_card_birthday">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">QQ：</label>
+                            <div class="col-sm-10">
+                                <input type="tel" class="form-control" id="txt_card_qq" autocomplete="off" maxlength="11">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">微信号：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="txt_card_wechat" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">名片示意：</label>
+                            <div class="col-sm-10">
+                                <img class="thumbnail" src="__TOOLS__/image/card.jpg" alt="名片" title="Token团队名片示意图">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="btn_card"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>生成</button>
+                    </form>
+                </div>
             </div>
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
@@ -173,17 +260,15 @@
                         <div class="panel-body">
                             <form onsubmit="return false;" class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">宽度：</label>
-                                    <div class="col-sm-4">
-                                        <div class="input-group">
-                                            <input type="number" id="qrcode_width" class="form-control" autocomplete="off" value="256" maxlength="4" />
-                                            <span class="input-group-addon">px</span>
+                                    <label class="col-sm-2 control-label">大小：</label>
+                                    <div class="col-sm-7">
+                                        <div class="range-slider">
+                                            <input type="range" min="64" max="2048" step="1" value="256" id="qrcode_size" />
                                         </div>
                                     </div>
-                                    <label class="col-sm-2 control-label">高度：</label>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="input-group">
-                                            <input type="number" id="qrcode_height" class="form-control" autocomplete="off" value="256" maxlength="4" />
+                                            <input type="number" id="qrcode_size_show" class="form-control" autocomplete="off" value="256" maxlength="4" />
                                             <span class="input-group-addon">px</span>
                                         </div>
                                     </div>
@@ -267,5 +352,6 @@
     <script type="text/javascript" src="__PLUGIN__/jquery-qrcode/jquery.qrcode.min.js"></script>
     <script type="text/javascript" src="__PLUGIN__/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
     <script type="text/javascript" src="__PLUGIN__/bootstrap-lightbox/dist/bootstrap-lightbox.min.js"></script>
+    <script type="text/javascript" src="__PLUGIN__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="__TOOLS__/js/qrcode.js"></script>
 </block>

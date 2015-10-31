@@ -7,6 +7,18 @@ $(document).ready(function() {
     $(".fore-color").colorpicker();
     $(".bg-color").colorpicker();
 
+    // DateTimePicker初始化
+    if(!Token.detect.isMobile()) {
+        $("#txt_card_birthday").datetimepicker({
+            format: "yyyy-m-d",
+            minView: "month",
+            weekStart: 1,
+            autoclose: true,
+            todayHighlight: true,
+            language: "zh-CN"
+        });
+    }
+    
     // 网址
     $("#btn_url").click(function() {
         var url = $('#txt_url').val().trim();
@@ -56,6 +68,25 @@ $(document).ready(function() {
                 Token.qrCode("http://token.team/app/" + data);
             });
         }
+    });
+    
+    // 名片
+    $("#btn_card").click(function() {
+        var name = $("#txt_card_name").val();
+        var company = "Token团队";
+        var department = $("#txt_card_department").val();
+        var position = $("#txt_card_position").val();
+        var address = "湖北省武汉市洪山区珞狮路122号";
+        var mobile = $("#txt_card_tel").val();
+        var telephone = "027-87855617";
+        var url = "http://www.wutnews.net/";
+        var email = $("#txt_card_email").val() + "@wutnews.net";
+        var birthday = $("#txt_card_birthday").val();
+        var qq = $("#txt_card_qq").val();
+        var wechat = $("#txt_card_wechat").val();
+        var vCard = "BEGIN:VCARD\r\nVERSION:2.1\r\nFN:" + name + "\r\nORG:" + company + department + "\r\nTITLE:" + position + "\r\nADR;WORK:;;" + address + "\r\nTEL;CELL;VOICE:" + mobile + "\r\nTEL;WORK;VOICE:" + telephone + "\r\nURL;WORK:" + url + "\r\nEMAIL;INTERNET,WORK:" + email + "\r\nBDAY:" + birthday + "\r\nX-QQ:" + qq + "\r\nX-WECHAT:" + wechat + "\r\nEND:VCARD";
+        if(name == "" || department == "请选择……" || mobile == "") Token.message.alert("请将你的名片信息填写完整");
+        else Token.qrCode(utf16to8(vCard));
     });
 
     // 微博选择监视
@@ -149,6 +180,25 @@ $(document).ready(function() {
         $("#txt_app_default").val(def);
     };
 
+    function utf16to8(str) {  
+        var out, i, len, c;  
+        out = "";  
+        len = str.length;  
+        for (i = 0; i < len; i++) {  
+            c = str.charCodeAt(i);  
+            if ((c >= 0x0001) && (c <= 0x007F)) {  
+                out += str.charAt(i);  
+            } else if (c > 0x07FF) {  
+                out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));  
+                out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));  
+                out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));  
+            } else {  
+                out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));  
+                out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));  
+            }  
+        }  
+        return out;  
+    } 
 });
 
 Token.qrCode = function(text) {
