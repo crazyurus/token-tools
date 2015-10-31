@@ -116,8 +116,16 @@ $(document).ready(function() {
     });
 
     // 二维码大小监视
-    $("#qrcode_width").change(function() {
-        $("#qrcode_height").val($(this).val());
+    $("#qrcode_size").change(function() {
+        $("#qrcode_size_show").val($(this).val());
+    });
+    $("#qrcode_size_show").change(function() {
+        var size = parseInt($(this).val());
+        if(size < 64 || size > 2048) {
+            Token.message.alert("二维码尺寸参数错误！");
+            $(this).val($("#qrcode_size").val());
+        }
+        else $("#qrcode_size").val($(this).val());
     });
 
     // 下载按钮
@@ -144,15 +152,14 @@ $(document).ready(function() {
 });
 
 Token.qrCode = function(text) {
-    var width = parseInt($("#qrcode_width").val());
-    var height = parseInt($("#qrcode_height").val());
-    if (width < 64 || height < 64) Token.message.alert("二维码尺寸参数错误！");
+    var size = parseInt($("#qrcode_size").val());
+    if (size < 64 || size > 2048) Token.message.alert("二维码尺寸参数错误！");
     else {
         $("#qrcode").html("").qrcode({
             text: text,
             render: render_method,
-            width: width,
-            height: height,
+            width: size,
+            height: size,
             correctLevel: parseInt($("#qrcode_error").val()),
             background: $("#qrcode_bgcolor").val(),
             foreground: $("#qrcode_fcolor").val(),

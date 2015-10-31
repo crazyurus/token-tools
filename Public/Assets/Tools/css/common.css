@@ -40,6 +40,7 @@ div.height-350 {
 .navbar-nav > .active > a {
 	background-color: transparent !important;
     border-bottom: 4px solid #009a61;
+    color: #009a61 !important;
 }
 
 button.push-20 {
