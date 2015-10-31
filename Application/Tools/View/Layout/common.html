@@ -26,19 +26,24 @@
 </head>
 
 <body>
-    <include file="Layout/navbar" />
+    <header>
+        <include file="Layout/navbar" />
+    </header>
     <div class="container">
-        <div class="alert alert-warning alert-dismissible alert-top" hidden>
-            <button type="button" class="close" data-name=""><span>&times;</span><span class="sr-only">关闭</span></button>
-            <span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;<span class="top-text"></span>
-        </div>
-        <block name="body"></block>
-        <hr>
+        <main role="main">
+            <div class="alert alert-warning alert-dismissible alert-top" hidden>
+                <button type="button" class="close" data-name=""><span>&times;</span><span class="sr-only">关闭</span></button>
+                <span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;<span class="top-text"></span>
+            </div>
+            <block name="body"></block>
+            <hr>
+        </main>
         <footer>
             <p class="pull-right"><a id="go_top" href="javascript:void(0)">回到顶部</a></p>
             <p>Feedback:&nbsp;<a href="mailto:xing.liao@wutnews.net">@廖星</a></p>
             <p>Powered By Token Team</p>
         </footer>
+
     </div>
     <script type="text/javascript" src="__PLUGIN__/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="__BOOTSTRAP__/js/bootstrap.min.js"></script>
