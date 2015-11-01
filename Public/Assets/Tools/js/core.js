@@ -62,6 +62,14 @@ var Token = {
 			return typeof(FileReader) !== "undefined";
 		}
 	},
+	tools: {
+		getFileType: function(path) {
+			return path.split(".").pop().toLowerCase();
+		},
+		getFileName: function(path) {
+			return path.replace(/\\/g, "/").split("/").pop().toLowerCase();
+		}
+	},
 	storage: {
     	_storage: window.localStorage,
 	    enable: function() {

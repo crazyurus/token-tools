@@ -1,4 +1,7 @@
 <extend name="Layout/common" />
+<block name="style">
+    <link rel="stylesheet" type="text/css" href="__PLUGIN__/FancyBox/source/jquery.fancybox.min.css">
+</block>
 <block name="body">
     <h3>URL Encode</h3>
     <div class="well">
@@ -94,90 +97,64 @@
         </form>
     </div>
     <h3>Base64</h3>
-    <div class="well">
-        <form onsubmit="return false;">
-            <div class="row">
-                <div class="col-sm-5">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#text" aria-controls="text" role="tab" data-toggle="tab">文本</a></li>
+        <li role="presentation"><a href="#pic" aria-controls="pic" role="tab" data-toggle="tab">图片</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="text">
+            <div class="well">
+                <form onsubmit="return false;">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="12" id="txt_base64_encode"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 text-center">
+                            <div class="margin-top-80 hidden-sm"></div>
+                            <p><button type="button" class="btn btn-success" id="btn_base64_encode"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>加密</button></p>
+                            <p><button type="button" class="btn btn-danger" id="btn_base64_decode"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>解密</button></p>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="12" id="txt_base64_decode"></textarea>
+                            </div>
+                        </div>
+                    </div>    
+                </form>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="pic">
+            <div class="well">
+                <form onsubmit="return false;">
                     <div class="form-group">
-                        <textarea class="form-control" rows="12" id="txt_base64_encode"></textarea>
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btn_pic_choose"><span>本地图片</span>&nbsp;<span class="caret"></span></button>
+                                <ul class="dropdown-menu" id="btn_pic_list">
+                                    <li data-type="file"><a>本地图片</a></li>
+                                    <li data-type="url"><a>网络图片</a></li>
+                                </ul>
+                            </div>
+                            <input type="file" class="form-control" id="txt_pic_url" placeholder="http://www.wutnews.net/images/logo.png" />
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <div class=" margin-top-80 hidden-sm"></div>
-                    <p><button type="button" class="btn btn-success" id="btn_base64_encode"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>加密</button></p>
-                    <p><button type="button" class="btn btn-danger" id="btn_base64_decode"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>解密</button></p>
-                </div>
-                <div class="col-sm-5">
                     <div class="form-group">
-                        <textarea class="form-control" rows="12" id="txt_base64_decode"></textarea>
+                        <button type="submit" class="btn btn-primary push-20" id="btn_pic_encode" disabled><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>编码</button>
+                        <button type="button" class="btn btn-default" id="btn_pic_show" disabled><span class="glyphicon glyphicon-picture" aria-hidden="true"></span>图片预览</button>
+                        <img src="" alt="图片预览" title="图片预览" hidden id="img_preview" />
                     </div>
-                </div>
-            </div>    
-        </form>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="7" id="txt_pic_decode" readonly></textarea>
+                    </div>   
+                </form>
+            </div>
+        </div>
     </div>
-
-    
 </block>
 <block name="script">
+    <script type="text/javascript" src="__PLUGIN__/FancyBox/source/jquery.fancybox.min.js"></script>
     <script type="text/javascript" src="__PLUGIN__/base64/base64.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-
-        // 哈希方法定义
-        var hash_func = "";
-
-    	// URL编码
-        $('#btn_url_encode').click(function() {
-            var oriStr = $('#txt_url').val().trim();
-            //if (oriStr.match(/^\w+%3A%2F%2F/)) return;
-            $('#txt_url').val(encodeURIComponent(oriStr));
-        });
-
-        // URL解码
-        $('#btn_url_decode').click(function() {
-            var oriStr = $('#txt_url').val().trim();
-            if (Token.check.url(oriStr)) return;
-            $('#txt_url').val(decodeURIComponent(oriStr));
-        });
-
-        // Base64编码
-        $('#btn_base64_encode').click(function() {
-            var oriStr = $('#txt_base64_encode').val().trim();
-            $('#txt_base64_decode').val(Base64.encode(oriStr));
-        });
-
-        // Base64解码
-        $('#btn_base64_decode').click(function() {
-            var oriStr = $('#txt_base64_decode').val().trim();
-            $('#txt_base64_encode').val(Base64.decode(oriStr));
-        });
-
-        // 方法选择监视
-        $(".btn-group label").click(function() {
-            hash_func = $(this).text().trim();
-        });
-
-        // 计算哈希
-        $("#btn_hash_calc").click(function() {
-            var text = $("#txt_hash").val().trim();
-            if(text == "") Token.message.alert("请输入需要计算的文本值");
-            else if(hash_func == "") Token.message.alert("请选择哈希函数");
-            else {
-                Token.ajax("{:U('Tools/Encode/hash', '', '.do')}", { text: text, hash: hash_func }, function(data) {
-                        $("#txt_hash_result").val(data);
-                });
-            }
-        });
-
-        // 哈希选择框
-        $(".dropdown-scroll > li").click(function() {
-            var hash_more_name = $(this).text().trim();
-            $("#hash_more_name").html(hash_more_name);
-            $(".btn-group label").removeClass("active");
-            $(".dropdown-toggle").addClass("active");
-            hash_func = hash_more_name;
-        });
-    });
-
-    </script>
+    <script type="text/javascript" src="__TOOLS__/js/encode.js"></script>
 </block>

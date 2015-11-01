@@ -18,4 +18,18 @@ class EncodeController extends CommonController {
 			else $this->ajaxError("无效的哈希函数！");
 		}
 	}
+
+	public function image($url) {
+		ob_clean();
+		header('Content-type: image/'.end(explode('.', $url)));
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_REFERER, "Token Tools");
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, false);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_exec($ch);
+        curl_close($ch);
+	}
 }
