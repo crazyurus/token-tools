@@ -14,6 +14,10 @@ h3 {
     .affix {
         position: static;
     }
+
+    .hidden-sm {
+        display: none;
+    }
 }
 
 div.height-350 {

@@ -168,7 +168,7 @@ $(document).ready(function() {
     else if(Token.detect.isMQQBrowser()) $("#btn_download").html("不支持QQ浏览器下载");
     else if(Token.detect.isUCBrowser()) $("#btn_download").html("不支持UC浏览器下载");
 
-    if(!document.createElement("canvas").getContext) {
+    if(!Token.support.canvas()) {
         $(".render-group label:last").click();
         $(".render-group label:first").attr("disabled", "disabled");
     }

@@ -54,6 +54,14 @@ var Token = {
 			return result ? parseFloat(result[0].replace(/(msie) /i, "")) : 99;
 		}
 	},
+	support: {
+		canvas: function() {
+			return document.createElement("canvas").getContext;
+		},
+		fileReader: function() {
+			return typeof(FileReader) !== "undefined";
+		}
+	},
 	storage: {
     	_storage: window.localStorage,
 	    enable: function() {
