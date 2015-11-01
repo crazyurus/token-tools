@@ -92,9 +92,18 @@ $(document).ready(function() {
         $("#img_preview").click();
     });
 
+    // 图片加载失败
+    $("#img_preview").load(function() {
+        $(this).parent().removeClass("has-error has-feedback");
+    }).error(function() {
+        $(this).val("");
+        $("#txt_pic_url").focus().select();
+        $(this).parent().addClass("has-error has-feedback");
+    });
+
     // 更换图片方式
     $("#btn_pic_list li").click(function() {
-        $("#btn_pic_choose > span:first").text($(this).text() + " ");
+        $("#btn_pic_choose > span:first").text($(this).text());
         $("#txt_pic_url").val("");
         $("#txt_pic_url").attr("type", $(this).data("type"));
     });

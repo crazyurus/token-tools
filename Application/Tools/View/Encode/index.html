@@ -139,11 +139,12 @@
                             </div>
                             <input type="file" class="form-control" id="txt_pic_url" placeholder="http://www.wutnews.net/images/logo.png" />
                         </div>
+                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                        <img src="" alt="图片预览" title="图片预览" hidden id="img_preview" />
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary push-20" id="btn_pic_encode" disabled><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>编码</button>
                         <button type="button" class="btn btn-default" id="btn_pic_show" disabled><span class="glyphicon glyphicon-picture" aria-hidden="true"></span>图片预览</button>
-                        <img src="" alt="图片预览" title="图片预览" hidden id="img_preview" />
                     </div>
                     <div class="form-group">
                         <textarea class="form-control" rows="7" id="txt_pic_decode" readonly></textarea>
