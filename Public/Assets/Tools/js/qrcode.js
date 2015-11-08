@@ -130,9 +130,8 @@ $(document).ready(function() {
     // Logo选择监视
     $(".logo-group label").click(function() {
         if ($(this).attr("disabled")) return false;
-        if ($(this).find("img")) {
-            logo_url = $(this).find("img").attr("src").replace("preview", "center");
-        } else logo_url = "";
+        if ($(this).text() == "无") logo_url = "";
+        else logo_url = $(this).find("img").attr("src").replace("preview", "center");
     });
 
     // 折叠监视

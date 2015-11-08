@@ -99,6 +99,10 @@ var Token = {
 	        this._storage.clear();
 	    }
 	},
+	progress: {
+		start: NProgress.start,
+		complete: NProgress.done
+	},
 	message: {
 		alert: bootbox.alert,
 		confirm: bootbox.confirm,
@@ -125,7 +129,7 @@ $("input, textarea").placeholder();
 
 // 设置进度条
 $(document).ready(function() { 
-	NProgress.start();
+	Token.progress.start();
 
 	// 检查IE版本
 	var ie_ver = Token.detect.getIEVer();
@@ -142,13 +146,13 @@ $(document).ready(function() {
 });
 
 $(window).load(function() {  
-	NProgress.done();
+	Token.progress.complete();
 }); 
 
 $(document).ajaxSend(function() {
-	NProgress.start();
+	Token.progress.start();
 });
 
 $(document).ajaxComplete(function() {
-	NProgress.done();
+	Token.progress.complete();
 });
