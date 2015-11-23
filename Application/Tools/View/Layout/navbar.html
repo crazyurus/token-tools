@@ -15,7 +15,13 @@
                 <li <?php check_active('QRCode'); ?>><a href="{:U('/tools/QRCode/index', '', '.html')}">二维码</a></li>
                 <li <?php check_active('encode'); ?>><a href="{:U('/tools/encode/index', '', '.html')}">编解码</a></li>
                 <li <?php check_active('markdown'); ?>><a href="{:U('/tools/markdown/', '', '.html')}">MarkDown</a></li>
-                <li <?php check_active('talk'); ?>><a href="{:U('/tools/talk/', '', '.html')}">说说统计</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">统计&nbsp;<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{:U('/tools/SNS/talk', '', '.html')}">小纬说说</a></li>
+                        <li><a href="{:U('/tools/SNS/weibo', '', '.html')}">论坛微博</a></li>
+                    </ul>
+                </li>
                 <li <?php check_active('detect'); ?>><a href="{:U('/tools/detect/index', '', '.html')}">浏览器检测</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
