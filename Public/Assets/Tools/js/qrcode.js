@@ -58,11 +58,12 @@ $(document).ready(function() {
             id: $("#list_app").val(),
             ios_url: $("#txt_app_ios").val(),
             android_url: $("#txt_app_android").val(),
+            apk_url: $("#txt_app_apk").val(),
             wp_url: $("#txt_app_wp").val(),
             default_url: $("#txt_app_default").val()
         };
         if (data.id == 0) Token.message.alert("请先选择App");
-        else if (data.android_url == "" || data.default_url == "") Token.message.alert("请输入App的下载地址信息！");
+        else if (data.apk_url == "" || data.default_url == "") Token.message.alert("请输入App的下载地址信息！");
         else {
             Token.ajax(Token.variable.app + "/tools/url/modify.do", data, function(data) {
                 Token.qrCode("http://token.team/app/" + data);
@@ -105,7 +106,7 @@ $(document).ready(function() {
         if (app == 0) setAppUrl("", "", "", "");
         else {
             Token.ajax(Token.variable.app + "/tools/url/getinfo.do?id=" + app, {}, function(data) {
-                setAppUrl(data.android_url, data.ios_url, data.wp_url, data.default_url);
+                setAppUrl(data.android_url, data.apk_url, data.ios_url, data.wp_url, data.default_url);
             });
         }
     });
@@ -172,9 +173,10 @@ $(document).ready(function() {
         $(".render-group label:first").attr("disabled", "disabled");
     }
 
-    function setAppUrl(android, ios, wp, def) {
+    function setAppUrl(android, apk, ios, wp, def) {
         $("#txt_app_ios").val(ios);
         $("#txt_app_android").val(android);
+        $("#txt_app_apk").val(apk);
         $("#txt_app_wp").val(wp);
         $("#txt_app_default").val(def);
     };
