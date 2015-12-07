@@ -37,11 +37,12 @@ class UrlController extends CommonController {
         $url = '';
         if($result) {
             if(preg_match('/(micromessenger|weibo)/i', $user_agent)) {
+                $this->assign('title', $result['app_name']);
                 $this->display('QRCode/open');
                 exit;
             }
             elseif(preg_match('/(ipad|ipod|iphone|ios)/i', $user_agent)) {
-                $url = 'https://appsto.re/cn/'.$result['ios_url'];
+                $url = 'itms-appss://itunes.apple.com/cn/app/id'.$result['ios_url'];
             }
             elseif(preg_match('/(qq|tb|alipay|windvane)/i', $user_agent)) {
                 $url = $result['apk_url'].'.apk';
