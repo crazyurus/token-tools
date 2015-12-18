@@ -26,7 +26,7 @@ class DWZController extends CommonController {
 			try {
 				$record = $this->model;
 				$record->create();
-				$record->origin_url = $origin_url;
+				$record->origin_url = str_replace('&amp;', '&', $origin_url);
 				$record->short_url = $short_url;
 				$record->user_ip = get_client_ip();
 				$record->title = $title;

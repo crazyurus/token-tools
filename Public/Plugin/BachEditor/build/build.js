@@ -21894,6 +21894,14 @@ var Editor = require('BachEditor/js/bacheditor.js');
 $(function() {
   var myEditor = new Editor();
   myEditor.render('#MarkDownEditor');
+  myEditor.toggleBig(Editor);
+  var parent = $(window.parent.document);
+  parent.find('#publish').click(function() {
+  		$.post('/tools/markdown/save.action', {data: myEditor.getHTML()}, function(result) {
+  			var url = 'http://token.team/tools/markdown/' + result + '.md';
+  			parent.find('#result').show().find('span.link').html('<a href="'+url+'" target="_blank">'+url+'</a>');
+  		});
+  });
   /* myEditor.render('#MarkDownEditor', 'live', function() {
      mario
     var velocity = 127; // how hard the note hits
