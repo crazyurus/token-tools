@@ -1,0 +1,358 @@
+<extend name="Layout/common" />
+<block name="style">
+    <link rel="stylesheet" type="text/css" href="__PLUGIN__/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" type="text/css" href="__PLUGIN__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+    <?php if(!check_ie()) { ?>
+    <link rel="stylesheet" type="text/css" href="__TOOLS__/css/range.css">
+    <?php } ?>
+    <style type="text/css">
+        #qrcode {
+            padding: 6px;
+            width: 270px;
+            height: 270px;
+        }
+
+        #accordion {
+            margin-top: 20px;
+        }
+
+        .full-70 {
+            width: 70px;
+            height: 70px;
+            padding-top: 24px;
+        }
+
+        .btn-disabled {
+            cursor: not-allowed;
+        }
+    </style>
+</block>
+<block name="body">
+    <h3>二维码</h3>
+    <div class="row">
+        <div class="col-md-9">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#url" aria-controls="url" role="tab" data-toggle="tab">网址</a></li>
+                <li role="presentation"><a href="#qq" aria-controls="qq" role="tab" data-toggle="tab">QQ</a></li>
+                <li role="presentation"><a href="#qun" aria-controls="qun" role="tab" data-toggle="tab">QQ群</a></li>
+                <li role="presentation"><a href="#weibo" aria-controls="weibo" role="tab" data-toggle="tab">微博</a></li>
+                <li role="presentation"><a href="#wechat" aria-controls="wechat" role="tab" data-toggle="tab">微信</a></li>
+                <li role="presentation"><a href="#app" aria-controls="app" role="tab" data-toggle="tab">App</a></li>
+                <li role="presentation"><a href="#card" aria-controls="card" role="tab" data-toggle="tab">名片</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="url">
+                    <form onsubmit="return false;">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">网址</span>
+                                <input type="url" class="form-control" id="txt_url" placeholder="http://www.wutnews.net/" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="btn_url"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>生成</button>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="qq">
+                    <form onsubmit="return false;">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">QQ</span>
+                                <input type="tel" class="form-control" id="txt_qq" placeholder="2577438164" maxlength="11" required>
+                            </div>
+                        </div>
+                        <p id="connect_qq"></p>
+                        <button type="submit" class="btn btn-primary" id="btn_qq"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>生成</button>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="qun">
+                    <form onsubmit="return false;">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">QQ群</span>
+                                <input type="tel" class="form-control" id="txt_qun" placeholder="313594349" maxlength="11" required>
+                            </div>
+                        </div>
+                        <p id="connect_qun">加入QQ群：<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=3d9988f877c4f18d21c957dec1460975acd8feba206123db4768ee37523cb2ca"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="武汉理工2015新生群Token" title="武汉理工2015新生群Token"></a></p>
+                        <div class="alert alert-danger" role="alert">由于腾讯对QQ群组件进行了加密处理，如需获取【一键加群】的二维码，请前往 <a href="http://qun.qq.com/join.html" target="_blank">qun.qq.com/join.html</a> 下载。</div>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="weibo">
+                    <form onsubmit="return false;">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">微博uid</span>
+                                <input type="tel" class="form-control" id="txt_weibo" placeholder="1213740967" maxlength="12" required>
+                            </div>
+                            <div class="btn-group weibo-group" role="group" data-toggle="buttons">
+                                <label class="btn btn-default" data-uid="5328936355">
+                                    <input type="radio" autocomplete="off">武汉理工大学Token团队 </label>
+                                <label class="btn btn-default" data-uid="1855112015">
+                                    <input type="radio" autocomplete="off">武汉理工大学经纬论坛 </label>
+                                <label class="btn btn-default" data-uid="2626763715">
+                                    <input type="radio" autocomplete="off">武汉理工大学新闻经纬 </label>
+                                <label class="btn btn-default" data-uid="3085057687">
+                                    <input type="radio" autocomplete="off">武汉理工大学校园文化 </label>
+                                </div>
+                            </div>
+                        <button type="submit" class="btn btn-primary" id="btn_weibo"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>生成</button>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="wechat">
+                    <form onsubmit="return false;">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">微信ID</span>
+                                <input type="text" class="form-control" id="txt_wechat" placeholder="3nVBWU7EEhNtrQo69yDM" required>
+                            </div>
+                            <div class="btn-group wechat-group" role="group" data-toggle="buttons">
+                                <label class="btn btn-default" data-id="3nVBWU7EEhNtrQo69yDM">
+                                    <input type="radio" autocomplete="off">Token团队 </label>
+                                <label class="btn btn-default" data-id="BUNMVGXE-ziArSE39xYX">
+                                    <input type="radio" autocomplete="off">TokenFamily </label>
+                                </div>
+                            </div>
+                        <button type="submit" class="btn btn-primary" id="btn_wechat"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>生成</button>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="app">
+                    <form onsubmit="return false;" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">App名称：</label>
+                            <div class="col-sm-10">
+                                <select class="selectpicker" id="list_app" {$mobile|show_mobile}>
+                                    <option value="0">请选择……</option>
+                                    <option value="1">掌上理工大</option>
+                                    <option value="2">理工发布</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Android：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">market://details?id=</span>
+                                    <input type="text" class="form-control" id="txt_app_android" placeholder="com.wutnews.bus.main">
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="txt_app_apk" placeholder="http://app.wutnews.net/apps/BUS" required>
+                                    <span class="input-group-addon">.apk</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">iOS：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">itms-appss://itunes.apple.com/cn/app/id</span>
+                                    <input type="text" class="form-control" id="txt_app_ios" placeholder="444934666">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Windows Phone：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">http://www.windowsphone.com/zh-cn/store/app/</span>
+                                    <input type="text" class="form-control" id="txt_app_wp" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">默认(电脑版)：</label>
+                            <div class="col-sm-10">
+                                <input type="url" class="form-control" id="txt_app_default" placeholder="http://app.wutnews.net/" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="btn_app"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>生成</button>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="card">
+                    <form onsubmit="return false;" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">姓名：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="txt_card_name" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">部门：</label>
+                            <div class="col-sm-10">
+                                <select class="selectpicker" id="txt_card_department" {$mobile|show_mobile} required>
+                                    <option value="0">请选择……</option>
+                                    <optgroup label="Tech Group">
+                                        <option>技术部</option>
+                                        <option>设计部</option>
+                                        <option>产品部</option>
+                                        <option>运营部</option>
+                                    </optgroup>
+                                    <optgroup label="Content Group">
+                                        <option>内容部新闻经纬</option>
+                                        <option>内容部校园文化</option>
+                                        <option>内容部时政视窗</option>
+                                        <option>摄影部</option>
+                                    </optgroup>
+                                    <optgroup label="Affair Group">
+                                        <option>人力资源部</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">职务：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="txt_card_position" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">手机号：</label>
+                            <div class="col-sm-10">
+                                <input type="tel" class="form-control" id="txt_card_tel" autocomplete="off" maxlength="11" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">邮箱：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="txt_card_email" placeholder="token" required>
+                                    <span class="input-group-addon">@wutnews.net</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">生日：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input type="<?php if($mobile) echo 'date';else echo 'text'; ?>" class="form-control" id="txt_card_birthday">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">QQ：</label>
+                            <div class="col-sm-10">
+                                <input type="tel" class="form-control" id="txt_card_qq" autocomplete="off" maxlength="11">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">微信号：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="txt_card_wechat" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">名片示意：</label>
+                            <div class="col-sm-10">
+                                <img class="thumbnail img-responsive" src="__TOOLS__/image/card.jpg" alt="名片" title="Token团队名片示意图">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="btn_card"><span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>生成</button>
+                    </form>
+                </div>
+            </div>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                      高级设置 <span class="pull-right glyphicon glyphicon-chevron-down" id="col-icon"></span>
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false">
+                        <div class="panel-body">
+                            <form onsubmit="return false;" class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">大小：</label>
+                                    <div class="col-sm-7">
+                                        <div class="range-slider">
+                                            <input type="range" min="64" max="2048" step="1" value="256" id="qrcode_size" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <input type="number" id="qrcode_size_show" class="form-control" autocomplete="off" value="256" maxlength="4" />
+                                            <span class="input-group-addon">px</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">渲染方式：</label>
+                                    <div class="col-sm-10">
+                                        <div class="btn-group render-group" role="group" data-toggle="buttons">
+                                            <label class="btn btn-default active">
+                                                <input type="radio" autocomplete="off" checked>Canvas </label>
+                                            <label class="btn btn-default">
+                                                <input type="radio" autocomplete="off">Table </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">纠错等级：</label>
+                                    <div class="col-sm-10">
+                                        <select class="selectpicker" id="qrcode_error" {$mobile|show_mobile}>
+                                            <option value="0" data-subtext="较差">QRErrorCorrectLevel.M</option>
+                                            <option value="1" data-subtext="一般">QRErrorCorrectLevel.L</option>
+                                            <option value="2" data-subtext="良好" selected>QRErrorCorrectLevel.H</option>
+                                            <option value="3" data-subtext="最好">QRErrorCorrectLevel.Q</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">前景色：</label>
+                                    <div class="col-sm-4">
+                                        <div class="input-group fore-color">
+                                            <input type="tel" id="qrcode_fcolor" class="form-control" autocomplete="off" value="#000000" maxlength="7" />
+                                            <span class="input-group-addon"><i class="block-color"></i></span>
+                                        </div>          
+                                    </div>
+                                    <label class="col-sm-2 control-label">背景色：</label>
+                                    <div class="col-sm-4">
+                                        <div class="input-group bg-color">
+                                            <input type="tel" id="qrcode_bgcolor" class="form-control" autocomplete="off" value="#ffffff" maxlength="7" />
+                                            <span class="input-group-addon"><i class="block-color"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">中心Logo：</label>
+                                    <div class="col-sm-10">
+                                        <div class="btn-group logo-group" role="group" data-toggle="buttons">
+                                            <label class="btn btn-default active">
+                                            <input type="radio" autocomplete="off" checked><div class="full-70">无</div> </label>
+                                            <label class="btn btn-default">
+                                                <input type="radio" autocomplete="off"><img src="__TOOLS__/image/preview/iwut.png" title="掌上理工大iOS" /> </label>
+                                            <label class="btn btn-default">
+                                                <input type="radio" autocomplete="off"><img src="__TOOLS__/image/preview/wechat.png" title="Token团队微信" /> </label>
+                                            <label class="btn btn-default">
+                                                <input type="radio" autocomplete="off"><img src="__TOOLS__/image/preview/token.png" title="Token团队Logo" /> </label>
+                                            <label class="btn btn-default">
+                                                <input type="radio" autocomplete="off"><img src="__TOOLS__/image/preview/planet.png" title="Token Planet" /> </label>
+                                            <label class="btn btn-default">
+                                                <input type="radio" autocomplete="off"><img src="__TOOLS__/image/preview/wutnews.png" title="经纬网" /> </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 height-350">
+            <div class="affix">
+                <a class="thumbnail" id="qrcode">
+                    <img src="__TOOLS__/image/blank.png" alt="二维码" title="二维码" />
+                </a>
+                <p class="text-center">
+                    <a href="" id="btn_download" class="btn btn-default btn-block" target="_blank" download="qrcode.png" data-loading-text="生成中..."  disabled><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>下载</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript" src="__PLUGIN__/jquery-qrcode/jquery.qrcode.min.js"></script>
+    <script type="text/javascript" src="__PLUGIN__/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+    <script type="text/javascript" src="__PLUGIN__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="__TOOLS__/js/qrcode.js"></script>
+</block>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="掌上理工大" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="author" content="Token团队">
+    <title>Token 便笺</title>
+    <link rel="shortcut icon" href="__TOOLS__/image/favicon.ico" type="image/x-icon">
+    <link href="__BOOTSTRAP__/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__TOOLS__/css/markdown.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="page-content">
+        <div class="container">
+            <article class="article"><?php echo file_get_contents('MarkDown/'.$hash.'.md'); ?></article>
+            <div class="fix-bottom">
+                <section class="after">
+                    <span>以上内容通过 <a href="//token.team/tools" target="_blank">Token Tools</a> 创建并生成</span>
+                    <span class="pull-right"><a id="feedback" href="http://sighttp.qq.com/authd?IDKEY=0182a8482a57fa496fed0928e631479afecd442dff65c508">反馈</a></span>
+                </section>
+                <footer class="footer">
+                    © 2015 Token Team
+                </footer>
+            </div>
+        </div>
+        <div class="qrcode">
+            <img class="qrcode-image" src="__TOOLS__/image/qrcode.png" title="Token团队" alt="二维码">
+            <p><strong>扫一扫</strong>
+                <br>关注微信【Token团队】</p>
+        </div>
+    </div>
+</body>
+
+</html>

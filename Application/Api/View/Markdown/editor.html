@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Token团队MarkDown编辑器</title>
+    <link rel="stylesheet" type="text/css" href="__PLUGIN__/BachEditor/build/build.min.css">
+    <style type="text/css">
+    	.container-fluid {
+    		padding: 0;
+    	}
+
+    	body {
+    		background: #fff;
+            font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
+    	}
+
+        .CodeMirror {
+            font-family: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="editor">
+	    <textarea id="MarkDownEditor"></textarea>
+	</div>
+    </div>
+    <script type="text/javascript" src="__PLUGIN__/BachEditor/build/build.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            Editor.toggleBig(Editor);
+        };  
+    </script>
+</body>
+
+</html>

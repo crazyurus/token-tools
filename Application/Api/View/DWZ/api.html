@@ -1,0 +1,96 @@
+<extend name="Layout/common" />
+<block name="style">
+    <style type="text/css">
+        pre {
+            color: #080;
+        }
+
+        .docs-sidebar {
+            width: 260px;
+        }
+
+        .docs-sidebar > h5 {
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .docs-sidebar  li {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .docs-sidebar  li.active {
+            font-weight: bold;
+            list-style: outside square none;
+        }
+
+        .docs-sidebar > ul > li {
+            list-style: outside disc none;
+        }
+
+        .docs-sidebar > ul > li > ul > li {
+            list-style: outside circle none;
+        }
+    </style>
+</block>
+<block name="body">
+    <h3>API说明</h3>
+    <div class="row" data-spy="scroll" data-target=".docs-sidebar">
+        <div class="col-md-9">
+            <p>Token团队短网址服务提供一个API接口，可通过该API得到网址的摘要信息。</p>
+            <p>本API采用HTTP协议，返回的数据格式为JSON。</p>
+            <h4 class="lead" id="request">请求的地址</h4>
+            <blockquote><strong>POST</strong>&nbsp;&nbsp;<a href="#">http://token.team{:U('Tools/DWZ/add', '', '.do')}</a></blockquote>
+            <table class="table table-striped table-responsive text-center">
+                <thead class="breadcrumb">
+                    <tr>
+                        <th>参数</th>
+                        <th>样例</th>
+                        <th>说明</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><samp>url</samp></td>
+                        <td>http://www.wutnews.net/</td>
+                        <td>需要转换的网址</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><samp>title</samp></td>
+                        <td>百度</td>
+                        <td>网址的说明</td>
+                        <td>可选参数</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4 class="lead" id="response">返回</h4>
+            <strong id="response-success">请求成功：</strong>
+            <p>请求成功会返回状态码<code>200</code>，并返回摘要信息。</p>
+            <p>在摘要前拼接域名即可得到完整的短网址：<a href="#">http://token.team/GGqPS4</a>。</p>
+            <pre>{"code":200, "data":"GGqPS4"}</pre>
+            <strong id="response-fail">请求失败：</strong>
+            <p>请求失败会返回状态码<code>500</code>，并返回错误信息。</p>
+            <pre>{"code":500, "data":"Url的格式不正确，请检查是否含有http协议部分。"}</pre>
+        </div>
+        <div class="col-md-3 hidden-sm">
+            <div class="docs-sidebar panel panel-default" data-spy="affix">
+                <h5>目录</h5>
+                <ul class="docs-sidenav">
+                    <li class="active">
+                        <a href="#request">请求的地址</a>
+                    </li>
+                    <li>
+                        <a href="#response">返回</a>  
+                        <ul>
+                            <li><a href="#response-success">请求成功</a></li>
+                            <li><a href="#response-fail">请求失败</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</block>
