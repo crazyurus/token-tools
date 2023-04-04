@@ -10,11 +10,11 @@ return array(
 
 	// 数据库
     'DB_TYPE'               =>  'mysql',     // 数据库类型
-    'DB_HOST'               =>  'localhost', // 服务器地址
-    'DB_NAME'               =>  'tokenteam',          // 数据库名
-    'DB_USER'               =>  'root',      // 用户名
-    'DB_PWD'                =>  '',          // 密码
-    'DB_PORT'               =>  '3306',        // 端口
+    'DB_HOST'               =>  $_ENV['MYSQLHOST'], // 服务器地址
+    'DB_NAME'               =>  $_ENV['MYSQLDATABASE'],          // 数据库名
+    'DB_USER'               =>  $_ENV['MYSQLUSER'],      // 用户名
+    'DB_PWD'                =>  $_ENV['MYSQLPASSWORD'],          // 密码
+    'DB_PORT'               =>  $_ENV['MYSQLPORT'],        // 端口
     'DB_PREFIX'             =>  '',    // 数据库表前缀
 
     // 模板参数

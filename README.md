@@ -1,14 +1,14 @@
 ﻿# Token Tools
 
+https://tools.up.railway.app/
+
 ## 简介
 
-Token Tools是为了简化运营和产品的同学工作量而开发的一个工具包，包含了很多工具。
-
-http://tools.wutnews.net/  或者 http://token.team/tools
+Token Tools 是为了简化运营和产品的同学工作量而开发的一个工具包，包含了很多工具。
 
 ## 工具
 
-Token Tools包含以下工具：
+Token Tools 包含以下工具：
 
 *  短网址
 *  二维码
@@ -20,7 +20,7 @@ Token Tools包含以下工具：
 
 ## 作者
 
-廖星（Crazy Urus）
+Crazy Urus
 
 ## 开源项目
 
